@@ -19,6 +19,15 @@ It's a complex solution with a few repositories:
 
 * **[Calabonga.Commandex.Engine](https://github.com/Calabonga/Calabonga.Commandex.Engine)** → Engine and contracts library for Calabonga.Commandex. Contracts are using for developing a modules for Commandex Shell.
 
+## How to install template
+
+Nothing is simpler then install this template. Just execute command in `powershell`:
+
+``` powershell
+dotnet new install Calabonga.Commandex.Shell.Develop.Template
+```
+
+
 ## How to use
 
 This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:
