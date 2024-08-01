@@ -1,5 +1,4 @@
 ﻿using Calabonga.Commandex.Engine;
-using Calabonga.Commandex.Shell.Develop.Engine;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Calabonga.Commandex.Shell.Develop
@@ -8,11 +7,9 @@ namespace Calabonga.Commandex.Shell.Develop
     {
         private readonly IDialogService _dialogService;
 
-        public MainWindowsViewModel(
-            IVersionService versionService,
-            IDialogService dialogService)
+        public MainWindowsViewModel(IDialogService dialogService)
         {
-            Title = $"Commandex Shell Developer v.{versionService.Version}";
+            Title = $"Commandex Shell Emulator for Developer";
             _dialogService = dialogService;
         }
 

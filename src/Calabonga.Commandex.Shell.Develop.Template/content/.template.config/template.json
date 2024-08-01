@@ -7,14 +7,14 @@
         "C#"
     ],
     "name": "Commandex.Shell.Developer for WPF AppDefinitions",
-    "description": "Define your Web API application parts in different definitions (files) for NET8.0. It's remarkably simple and useful. You will know what features your application consists of.",
-    "identity": "Calabonga.AppDefinitions.Shell",
+    "description": "AppDefinitions implementation for WPF. Shell emulation for Commandex.Command developing.",
+    "identity": "Calabonga.Commandex.Shell.Develop",
     "shortName": "wpfshell",
     "tags": {
         "language": "C#",
         "type": "project"
     },
-    "sourceName": "Calabonga.AppDefinitions.Shell",
+    "sourceName": "Calabonga.Commandex.Shell.Develop",
     "preferNameDirectory": true,
     "symbols": {
         "Framework": {

@@ -4,12 +4,16 @@
     <!-- The package metadata. Fill in the properties marked as TODO below -->
     <!-- Follow the instructions on https://learn.microsoft.com/en-us/nuget/create-packages/package-authoring-best-practices -->
     <PackageId>Calabonga.Commandex.Shell.Develop.Template</PackageId>
-    <PackageVersion>1.0.0-beta.2</PackageVersion>
+    <PackageVersion>1.0.0-beta.5</PackageVersion>
     <Title>Calabonga.Commandex.Shell.Develop.Template</Title>
     <Authors>Calabonga</Authors>
+    <Copyright>Calabonga SOFT © 2001-$([System.DateTime]::Now.ToString(yyyy))</Copyright>
+    <PackageIcon>logo.png</PackageIcon>
     <Description>Developer version of the Calabonga.Commandex. Witch is created to runs commands of any type for any purposes. For example, to execute a stored procedure or just to copy some files to some destinations</Description>
     <PackageTags>commandex;calabonga;develope;shell;template</PackageTags>
     <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Shell.Develop.Template</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>Git Info nuget package removed because throwing error when git not used</PackageReleaseNotes>
 
     <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
     <PackageType>Template</PackageType>
@@ -20,11 +24,8 @@
     <NoWarn>$(NoWarn);NU5128</NoWarn>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <LocalizeTemplates>false</LocalizeTemplates>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Calabonga/Calabonga.Commandex.Shell.Develop.Template</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,20 +33,32 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
+    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**;content\**\.vs\**" />
     <Compile Remove="**\*" />
-    <Compile Remove="content\.vs\**" />
     <Compile Remove="content\_ReSharper.Caches\**" />
-    <Content Remove="content\.vs\**" />
+    <Compile Remove="_ReSharper.Caches\**" />
     <Content Remove="content\_ReSharper.Caches\**" />
-    <EmbeddedResource Remove="content\.vs\**" />
     <EmbeddedResource Remove="content\_ReSharper.Caches\**" />
-    <None Remove="content\.vs\**" />
+    <EmbeddedResource Remove="_ReSharper.Caches\**" />
     <None Remove="content\_ReSharper.Caches\**" />
+    <None Remove="_ReSharper.Caches\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="" />
-  </ItemGroup>
+   <ItemGroup>
+     <None Include="..\..\README.md">
+       <Pack>True</Pack>
+       <PackagePath>\</PackagePath>
+     </None>
+     <None Include="..\logo.png">
+       <Pack>True</Pack>
+       <PackagePath>\</PackagePath>
+     </None>
+   </ItemGroup>
 
+    <ItemGroup>
+        <None Update="logo.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
 </Project>

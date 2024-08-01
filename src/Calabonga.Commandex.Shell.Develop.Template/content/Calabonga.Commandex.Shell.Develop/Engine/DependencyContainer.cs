@@ -30,11 +30,11 @@ internal static class DependencyContainer
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowsViewModel>();
         services.AddSingleton<IDialogService, DialogService>();
-        services.AddSingleton<IVersionService, VersionService>();
 
         // --------------------------------------------------
-        // Attach definition from your library. Uncomment line below and add your command type.
-        // services.AddDefinitions(typeof(YourCommandDefinition));
+        // Attach your definition from your project with your
+        // Commandex.Command implementation, uncomment line below and add your command type.
+        // services.AddDefinitions(typeof(YourCommandDefinition)); // <-- here should be your Command
         // --------------------------------------------------
 
         return services.BuildServiceProvider();

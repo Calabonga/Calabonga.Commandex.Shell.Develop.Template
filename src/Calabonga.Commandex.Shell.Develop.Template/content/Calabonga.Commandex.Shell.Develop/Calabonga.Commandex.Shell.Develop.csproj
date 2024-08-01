@@ -11,10 +11,6 @@
   <ItemGroup>
     <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-beta.7" />
     <PackageReference Include="Calabonga.Wpf.AppDefinitions" Version="1.0.0-beta.9" />
-    <PackageReference Include="GitInfo" Version="3.3.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     <PackageReference Include="Npgsql" Version="8.0.3" />
