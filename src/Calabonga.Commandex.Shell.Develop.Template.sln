@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calabonga.Commandex.Shell.Develop.Template", "Calabonga.Commandex.Shell.Develop.Template\Calabonga.Commandex.Shell.Develop.Template.csproj", "{3E02468F-7C1E-41BC-81DB-B9042A5BA4DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E02468F-7C1E-41BC-81DB-B9042A5BA4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E02468F-7C1E-41BC-81DB-B9042A5BA4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E02468F-7C1E-41BC-81DB-B9042A5BA4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E02468F-7C1E-41BC-81DB-B9042A5BA4DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C84D6C1-A144-4836-9A07-EFB1BFFFCB0B}
+	EndGlobalSection
+EndGlobal
