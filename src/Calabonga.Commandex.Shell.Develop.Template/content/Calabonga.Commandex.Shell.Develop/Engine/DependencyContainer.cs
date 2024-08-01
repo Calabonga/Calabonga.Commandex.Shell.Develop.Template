@@ -1,4 +1,4 @@
-﻿using Calabonga.Commandex.Contracts;
+﻿using Calabonga.Commandex.Engine;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;

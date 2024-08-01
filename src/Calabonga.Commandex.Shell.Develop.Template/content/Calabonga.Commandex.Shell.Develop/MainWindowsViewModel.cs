@@ -1,4 +1,4 @@
-﻿using Calabonga.Commandex.Contracts;
+﻿using Calabonga.Commandex.Engine;
 using Calabonga.Commandex.Shell.Develop.Engine;
 using CommunityToolkit.Mvvm.Input;
 

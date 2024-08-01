@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!-- The package metadata. Fill in the properties marked as TODO below -->
     <!-- Follow the instructions on https://learn.microsoft.com/en-us/nuget/create-packages/package-authoring-best-practices -->
     <PackageId>Calabonga.Commandex.Shell.Develop.Template</PackageId>
-    <PackageVersion>1.0.0-beta.1</PackageVersion>
+    <PackageVersion>1.0.0-beta.2</PackageVersion>
     <Title>Calabonga.Commandex.Shell.Develop.Template</Title>
     <Authors>Calabonga</Authors>
     <Description>Developer version of the Calabonga.Commandex. Witch is created to runs commands of any type for any purposes. For example, to execute a stored procedure or just to copy some files to some destinations</Description>
@@ -34,6 +34,14 @@
   <ItemGroup>
     <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
     <Compile Remove="**\*" />
+    <Compile Remove="content\.vs\**" />
+    <Compile Remove="content\_ReSharper.Caches\**" />
+    <Content Remove="content\.vs\**" />
+    <Content Remove="content\_ReSharper.Caches\**" />
+    <EmbeddedResource Remove="content\.vs\**" />
+    <EmbeddedResource Remove="content\_ReSharper.Caches\**" />
+    <None Remove="content\.vs\**" />
+    <None Remove="content\_ReSharper.Caches\**" />
   </ItemGroup>
 
   <ItemGroup>

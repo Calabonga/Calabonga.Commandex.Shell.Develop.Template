@@ -41,9 +41,3 @@ This application can only test your Command for Commandex, but almost in a real 
 ## Ingredients
 
 WPF, MVVM, CommunityToolkit, etc.
-
-## Versions history 
-
-### v1.0.0-beta.1 2024-08-01
-
-* First commit
