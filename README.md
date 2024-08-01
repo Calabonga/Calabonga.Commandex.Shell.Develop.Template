@@ -106,6 +106,11 @@ WPF, MVVM, CommunityToolkit, etc.
 
 ## Versions history 
 
+### v1.0.0-beta.5 2024-08-01
+
+* `GitInfo` nuget package removed because throwing error when git not used.
+* Readme.md updated with screenshot and som code snippets.
+*  
 ### v1.0.0-beta.1 2024-08-01
 
 * First commit
