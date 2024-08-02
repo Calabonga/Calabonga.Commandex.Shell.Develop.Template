@@ -4,9 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Calabonga.Commandex.Shell.Develop.Engine;
 
-/// <summary>
-/// DialogService implementation
-/// </summary>
 public class DialogService : IDialogService
 {
     public void ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
@@ -36,15 +33,15 @@ public class DialogService : IDialogService
         dialog.Content = userControl;
         dialog.Title = ((IDialogResult)viewModel).DialogTitle;
 
+        dialog.ResizeMode = ((IDialogResult)viewModel).ResizeMode;
+        dialog.SizeToContent = ((IDialogResult)viewModel).SizeToContent;
+        dialog.WindowStyle = ((IDialogResult)viewModel).WindowStyle;
+
         dialog.ShowDialog();
         dialog.InitializeComponent();
 
     }
 
-    /// <summary>
-    /// Shows dialogs with simple message
-    /// </summary>
-    /// <param name="message"></param>
     public void ShowNotification(string message)
     {
         ShowDialog(message, LogLevel.Notification);
@@ -85,14 +82,15 @@ public class DialogService : IDialogService
 
         dialog.Closed += closeEventHandler;
 
+        var viewModel = new NotificationDialogResult() { Title = message };
         var control = new NotificationDialog
         {
-            DataContext = new NotificationDialogViewModel
-            {
-                Title = message
-            }
+            DataContext = viewModel
         };
 
+        dialog.ResizeMode = ((IDialogResult)viewModel).ResizeMode;
+        dialog.SizeToContent = ((IDialogResult)viewModel).SizeToContent;
+        dialog.WindowStyle = ((IDialogResult)viewModel).WindowStyle;
         dialog.Content = control;
 
         dialog.Title = GetTitle(type);
