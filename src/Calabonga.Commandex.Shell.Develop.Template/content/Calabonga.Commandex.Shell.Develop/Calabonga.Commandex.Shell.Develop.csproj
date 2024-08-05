@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Core\Engine\**" />
+    <Compile Remove="Core\Services\**" />
+    <EmbeddedResource Remove="Core\Engine\**" />
+    <EmbeddedResource Remove="Core\Services\**" />
+    <None Remove="Core\Engine\**" />
+    <None Remove="Core\Services\**" />
+    <Page Remove="Core\Engine\**" />
+    <Page Remove="Core\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-beta.13" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />

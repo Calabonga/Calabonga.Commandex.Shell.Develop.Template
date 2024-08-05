@@ -97,20 +97,27 @@ This application can only test your Command for Commandex, but almost in a real 
 
 ## Screenshot
 
-![imaged](./whatnot/howitworks.png)
+![imaged](./whatnot/howitworks_2024-08-05.png)
 Pic1. Main window content.
 
 ## Ingredients
 
-WPF, MVVM, CommunityToolkit, etc.
+WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-beta.9 2024-08-05
+
+* Core from original Shell updated.
+* Nuget dependencies updated.
+* MainWindow updated with new welcome message (instructions).
+* 
 ### v1.0.0-beta.5 2024-08-01
 
 * `GitInfo` nuget package removed because throwing error when git not used.
 * Readme.md updated with screenshot and som code snippets.
-*  
+
+
 ### v1.0.0-beta.1 2024-08-01
 
 * First commit

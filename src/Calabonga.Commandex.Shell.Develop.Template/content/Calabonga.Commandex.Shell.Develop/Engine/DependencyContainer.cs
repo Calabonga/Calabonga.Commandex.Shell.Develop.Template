@@ -1,23 +1,16 @@
 ﻿using Calabonga.Commandex.Engine;
+using Calabonga.Commandex.Shell.Develop.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace Calabonga.Commandex.Shell.Develop.Engine;
 
-/// <summary>
-/// Dependency container helper.
-/// </summary>
 internal static class DependencyContainer
 {
-    /// <summary>
-    /// Executes some registrations for Commandex. You can use this register your CommandexCommand for testing
-    /// </summary>
-    /// <returns></returns>
     internal static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
-
 
         services.AddLogging(options =>
         {

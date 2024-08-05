@@ -1,4 +1,4 @@
-﻿namespace Calabonga.Commandex.Shell.Develop.Engine;
+﻿namespace Calabonga.Commandex.Shell.Develop.Core;
 
 public enum LogLevel
 {

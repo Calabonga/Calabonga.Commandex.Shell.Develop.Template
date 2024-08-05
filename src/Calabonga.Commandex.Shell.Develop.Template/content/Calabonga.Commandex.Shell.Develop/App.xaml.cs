@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using Calabonga.Commandex.Shell.Develop.Engine;
+﻿using Calabonga.Commandex.Shell.Develop.Engine;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using System.Windows;
 
 namespace Calabonga.Commandex.Shell.Develop
 {
@@ -24,7 +24,7 @@ namespace Calabonga.Commandex.Shell.Develop
         /// <summary>
         /// Gets the current <see cref="App"/> instance in use
         /// </summary>
-        public new static App Current => (App)Application.Current;
+        public static new App Current => (App)Application.Current;
 
         /// <summary>
         /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.

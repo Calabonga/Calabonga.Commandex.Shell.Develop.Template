@@ -16,9 +16,9 @@
             <TextBlock TextWrapping="Wrap" Text="2. Inject your command into MainWindowsViewModel as ICommandexCommand"/>
             <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
             <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
-            <Button
-                     IsDefault="True"
-                     Padding="9"
+            <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in \logs\local-*.log by default. Please check this settings in App class."/>
+            <Button IsDefault="True"
+                    Padding="9"
                     MinWidth="150"
                     Content="Execute" Command="{Binding ExecuteCommand}"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
