@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using Calabonga.Commandex.Engine;
+using System.Windows;
 using System.Windows.Controls;
-using Calabonga.Commandex.Engine;
 
-namespace Calabonga.Commandex.Shell.Develop.Engine;
+namespace Calabonga.Commandex.Shell.Develop.Core;
 
 /// <summary>
 /// Interaction logic for NotificationDialog.xaml

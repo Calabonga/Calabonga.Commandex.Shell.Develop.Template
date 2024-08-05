@@ -1,14 +1,10 @@
-﻿<Window x:Class="Calabonga.Commandex.Shell.Develop.Engine.DialogWindow"
+﻿<Window x:Class="Calabonga.Commandex.Shell.Develop.Core.DialogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="{Binding ResizeMode}"
-        SizeToContent="{Binding SizeToContent}"
-        Title="{Binding Title}"
-        WindowStyle="{Binding WindowStyle}">
+        WindowStartupLocation="CenterScreen">
     <Grid/>
     
 </Window>
