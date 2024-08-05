@@ -6,8 +6,8 @@
         "Desktop",
         "C#"
     ],
-    "name": "Commandex.Shell.Developer for WPF AppDefinitions",
-    "description": "AppDefinitions implementation for WPF. Shell emulation for Commandex.Command developing.",
+    "name": "Commandex.Shell for Developer",
+    "description": "AppDefinitions implementation for WPF. Shell emulation for easy Commandex.Command developing.",
     "identity": "Calabonga.Commandex.Shell.Develop",
     "shortName": "wpfshell",
     "tags": {
