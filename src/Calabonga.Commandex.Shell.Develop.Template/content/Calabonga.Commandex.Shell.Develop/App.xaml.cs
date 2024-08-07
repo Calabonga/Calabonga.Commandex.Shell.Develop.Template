@@ -1,4 +1,5 @@
-﻿using Calabonga.Commandex.Shell.Develop.Engine;
+﻿using Calabonga.Commandex.Shell.Develop.Core;
+using Calabonga.Commandex.Shell.Develop.Engine;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Windows;
@@ -18,8 +19,15 @@ namespace Calabonga.Commandex.Shell.Develop
                 .WriteTo.File("/logs/local-.log", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, shared: true)
                 .CreateLogger();
 
+            Settings = SettingsFinder.Configure();
+
             Services = DependencyContainer.ConfigureServices();
         }
+
+        /// <summary>
+        /// Current Application settings from env-file.
+        /// </summary>
+        public AppSettings Settings { get; }
 
         /// <summary>
         /// Gets the current <see cref="App"/> instance in use

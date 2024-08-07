@@ -37,14 +37,9 @@ This application can only test your Command for Commandex, but almost in a real 
     ``` csharp
     internal static class DependencyContainer
     {
-        /// <summary>
-        /// Executes some registrations for Commandex. You can use this register your CommandexCommand for testing
-        /// </summary>
-        /// <returns></returns>
         internal static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
-
 
             services.AddLogging(options =>
             {
@@ -57,11 +52,12 @@ This application can only test your Command for Commandex, but almost in a real 
             services.AddSingleton<MainWindow>();
             services.AddSingleton<MainWindowsViewModel>();
             services.AddSingleton<IDialogService, DialogService>();
+            services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
 
             // --------------------------------------------------
             // Attach your definition from your project with your
             // Commandex.Command implementation, uncomment line below and add your command type.
-            // services.AddDefinitions(typeof(YourCommandDefinition)); 
+            // services.AddDefinitions(typeof(YourCommandDefinition)); // <-- here should be your Command
             // --------------------------------------------------
 
             return services.BuildServiceProvider();
@@ -74,19 +70,21 @@ This application can only test your Command for Commandex, but almost in a real 
     ``` csharp
     public partial class MainWindowsViewModel : ViewModelBase
     {
-        private readonly ICommandexCommand _command; // ← create private field
+        private readonly IDialogService _dialogService;
 
-        public MainWindowsViewModel(ICommandexCommand command) // ← inject base interface
+        public MainWindowsViewModel(
+            IDialogService dialogService,
+            IAppSettings settings)
         {
-            _command = command; // ← do not forget this
-            Title = $"Commandex Shell Developer Emulator";
+            Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
+            _dialogService = dialogService;
         }
+
 
         [RelayCommand]
         private Task ExecuteAsync()
         {
-            _command.ShowDialogAsync(); // ← show command dialog
-
+            _dialogService.ShowNotification("You do not attach your ICommandexCommand yet.");
             return Task.CompletedTask;
         }
     }
@@ -106,11 +104,18 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-beta.12 2024-08-07
+
+* `SettingsFinder` copied from the main Shell project.
+* Shell settings as `IAppSettings` injected to `MainWindowViewModel`.
+* `commandex.env` file created with default parameters.
+* Nuget dependencied version updated.
+
 ### v1.0.0-beta.9 2024-08-05
 
 * Core from original Shell updated.
 * Nuget dependencies updated.
-* MainWindow updated with new welcome message (instructions).
+* `MainWindow` updated with new welcome message (instructions).
 * 
 ### v1.0.0-beta.5 2024-08-01
 

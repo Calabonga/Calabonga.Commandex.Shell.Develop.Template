@@ -7,11 +7,14 @@ namespace Calabonga.Commandex.Shell.Develop
     {
         private readonly IDialogService _dialogService;
 
-        public MainWindowsViewModel(IDialogService dialogService)
+        public MainWindowsViewModel(
+            IDialogService dialogService,
+            IAppSettings settings)
         {
-            Title = $"Commandex Shell Emulator for Developer";
+            Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
             _dialogService = dialogService;
         }
+
 
         [RelayCommand]
         private Task ExecuteAsync()

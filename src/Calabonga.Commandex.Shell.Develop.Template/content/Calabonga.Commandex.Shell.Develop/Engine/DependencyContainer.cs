@@ -23,6 +23,7 @@ internal static class DependencyContainer
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowsViewModel>();
         services.AddSingleton<IDialogService, DialogService>();
+        services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
 
         // --------------------------------------------------
         // Attach your definition from your project with your
