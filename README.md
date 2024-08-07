@@ -95,8 +95,7 @@ This application can only test your Command for Commandex, but almost in a real 
 
 ## Screenshot
 
-![imaged](./whatnot/howitworks_2024-08-05.png)
-Pic1. Main window content.
+![image](https://github.com/user-attachments/assets/9393d2a6-fbf8-40ff-a3df-ee1b185f705e)
 
 ## Ingredients
 
