@@ -1,46 +1,46 @@
 {
-    "$schema": "http://json.schemastore.org/template",
-    "author": "Calabonga SOFT",
-    "classifications": [
-        "Windows",
-        "Desktop",
-        "C#"
-    ],
-    "name": "Commandex.Shell for Developer",
-    "description": "AppDefinitions implementation for WPF. Shell emulation for easy Commandex.Command developing.",
-    "identity": "Calabonga.Commandex.Shell.Develop",
-    "shortName": "wpfshell",
-    "tags": {
-        "language": "C#",
-        "type": "project"
-    },
-    "sourceName": "Calabonga.Commandex.Shell.Develop",
-    "preferNameDirectory": true,
-    "symbols": {
-        "Framework": {
-            "type": "parameter",
-            "description": "The target framework for the project.",
-            "datatype": "choice",
-            "choices": [
-                {
-                    "choice": "net8.0"
-                }
-            ],
-            "defaultValue": "net8.0"
-        }
-    },
-    "sources": [
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Calabonga SOFT",
+  "classifications": [
+    "Windows",
+    "Desktop",
+    "C#"
+  ],
+  "name": "WPF Application for Commandex",
+  "description": "The implementation of the AppDefinitions for WPF. Shell emulation for easy Commandex.Command developing.",
+  "identity": "Calabonga.Commandex.Shell.Develop",
+  "shortName": "wpfshell",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Calabonga.Commandex.Shell.Develop",
+  "preferNameDirectory": true,
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
         {
-            "modifiers": [
-                {
-                    "exclude": [
-                        ".vs/**",
-                        ".idea/**",
-                        "_ReSharper.Caches/**",
-                        ".template_config/**"
-                    ]
-                }
-            ]
+          "choice": "net8.0"
         }
-    ]
+      ],
+      "defaultValue": "net8.0"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/**",
+            ".idea/**",
+            "_ReSharper.Caches/**",
+            ".template_config/**"
+          ]
+        }
+      ]
+    }
+  ]
 }

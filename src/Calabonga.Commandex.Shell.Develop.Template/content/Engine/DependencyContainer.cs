@@ -1,5 +1,6 @@
 ﻿using Calabonga.Commandex.Engine;
 using Calabonga.Commandex.Shell.Develop.Core;
+using Calabonga.Commandex.Shell.Develop.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -21,7 +22,7 @@ internal static class DependencyContainer
         services.AddSingleton(typeof(DefaultDialogResult<>));
         services.AddSingleton<DefaultDialogView>();
         services.AddSingleton<MainWindow>();
-        services.AddSingleton<MainWindowsViewModel>();
+        services.AddSingleton<ViewModels.MainWindowsViewModel>();
         services.AddSingleton<IDialogService, DialogService>();
         services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
 
