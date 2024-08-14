@@ -3,6 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Startup="Application_Startup">
     <Application.Resources>
-         
+        <Style x:Key="HugeHeader" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="Header" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="SubHeader" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="FancyBorder" TargetType="{x:Type Border}">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderBrush" Value="#cccccc" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
     </Application.Resources>
 </Application>

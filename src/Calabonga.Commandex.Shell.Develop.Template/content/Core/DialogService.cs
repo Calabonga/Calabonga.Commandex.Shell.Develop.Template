@@ -1,9 +1,11 @@
-﻿using Calabonga.Commandex.Engine;
+﻿using System.Windows.Controls;
+using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Exceptions;
+using Calabonga.Commandex.Shell.Core;
 using Calabonga.OperationResults;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Windows.Controls;
 
 namespace Calabonga.Commandex.Shell.Develop.Core;
 
@@ -22,9 +24,9 @@ public class DialogService : IDialogService
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     /// <param name="onClosingDialogCallback"></param>
-    public OperationEmpty<OpenDialogException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
-        where TView : IDialogView
-        where TViewModel : IDialogResult
+    public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>(Action<TViewModel> onClosingDialogCallback)
+        where TView : IView
+        where TViewModel : IResult
         => ShowDialogInternal<TView, TViewModel>(onClosingDialogCallback);
 
     /// <summary>
@@ -32,27 +34,27 @@ public class DialogService : IDialogService
     /// </summary>
     /// <typeparam name="TView"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
-    public OperationEmpty<OpenDialogException> ShowDialog<TView, TViewModel>() where TView : IDialogView where TViewModel : IDialogResult
+    public OperationEmpty<ExecuteCommandexCommandException> ShowDialog<TView, TViewModel>() where TView : IDialogView where TViewModel : IDialogResult
         => ShowDialogInternal<TView, TViewModel>();
 
-    public OperationEmpty<OpenDialogException> ShowNotification(string message)
-        => ShowDialogInternal(message, LogLevel.Notification);
+    public OperationEmpty<ExecuteCommandexCommandException> ShowNotification(string message)
+        => ShowDialogInternal(message, Microsoft.Extensions.Logging.LogLevel.Information);
 
-    public OperationEmpty<OpenDialogException> ShowWarning(string message)
-        => ShowDialogInternal(message, LogLevel.Warning);
+    public OperationEmpty<ExecuteCommandexCommandException> ShowWarning(string message)
+        => ShowDialogInternal(message, Microsoft.Extensions.Logging.LogLevel.Warning);
 
-    public OperationEmpty<OpenDialogException> ShowError(string message)
-        => ShowDialogInternal(message, LogLevel.Error);
+    public OperationEmpty<ExecuteCommandexCommandException> ShowError(string message)
+        => ShowDialogInternal(message, Microsoft.Extensions.Logging.LogLevel.Error);
 
-    private string GetTitle(LogLevel type) => type.ToString();
+    private string GetTitle(Microsoft.Extensions.Logging.LogLevel type) => type.ToString();
 
-    private OperationEmpty<OpenDialogException> ShowDialogInternal<TView, TViewModel>(Action<TViewModel>? onClosingDialogCallback = null)
-        where TView : IDialogView
-        where TViewModel : IDialogResult
+    private OperationEmpty<ExecuteCommandexCommandException> ShowDialogInternal<TView, TViewModel>(Action<TViewModel>? onClosingDialogCallback = null)
+        where TView : IView
+        where TViewModel : IResult
     {
         EventHandler closeEventHandler = null!;
 
-        var dialog = new DialogWindow();
+        var dialog = new DialogWindow { MinWidth = 400, MinHeight = 350 };
 
         var handler = closeEventHandler;
         closeEventHandler = (sender, _) =>
@@ -61,6 +63,7 @@ public class DialogService : IDialogService
             var userControl = (UserControl)window.Content;
             var viewModel = (TViewModel)userControl.DataContext;
             onClosingDialogCallback?.Invoke(viewModel);
+            viewModel.Dispose();
             dialog.Closed -= handler;
         };
 
@@ -74,7 +77,7 @@ public class DialogService : IDialogService
             userControl.DataContext = viewModel;
             dialog.Content = userControl;
 
-            var viewModelResult = (IDialogResult)viewModel;
+            var viewModelResult = (IResult)viewModel;
             viewModelResult.Owner = dialog;
 
             var title = viewModelResult.Title;
@@ -92,11 +95,11 @@ public class DialogService : IDialogService
         catch (Exception exception)
         {
             _logger.LogError(exception, exception.Message);
-            return Operation.Error(new OpenDialogException(exception.Message, exception));
+            return Operation.Error(new ExecuteCommandexCommandException(exception.Message, exception));
         }
     }
 
-    private OperationEmpty<OpenDialogException> ShowDialogInternal(string message, LogLevel type)
+    private OperationEmpty<ExecuteCommandexCommandException> ShowDialogInternal(string message, Microsoft.Extensions.Logging.LogLevel type)
     {
         var dialog = new DialogWindow();
 

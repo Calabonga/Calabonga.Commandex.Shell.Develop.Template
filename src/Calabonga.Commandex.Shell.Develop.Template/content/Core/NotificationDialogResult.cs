@@ -1,7 +1,7 @@
-﻿using Calabonga.Commandex.Engine;
+﻿using Calabonga.Commandex.Engine.Dialogs;
 using System.Windows;
 
-namespace Calabonga.Commandex.Shell.Develop.Core;
+namespace Calabonga.Commandex.Shell.Core;
 
 /// <summary>
 /// // Calabonga: Summary required (NotificationDialogResult 2024-07-29 04:07)
@@ -12,4 +12,6 @@ public partial class NotificationDialogResult : DefaultDialogResult
     /// Default value <see cref="WindowStyle.ToolWindow"/>
     /// </summary>
     public override WindowStyle WindowStyle => WindowStyle.ToolWindow;
+
+    public override void Dispose() { }
 }

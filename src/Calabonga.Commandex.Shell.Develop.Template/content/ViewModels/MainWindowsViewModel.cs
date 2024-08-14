@@ -1,21 +1,28 @@
-﻿using Calabonga.Commandex.Engine;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Dialogs;
+using Calabonga.Commandex.Engine.Settings;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
+/// <summary>
+/// ViewModel for MainWindow View.
+/// </summary>
 public partial class MainWindowsViewModel : ViewModelBase
 {
     private readonly IDialogService _dialogService;
 
-    public MainWindowsViewModel(
-        IDialogService dialogService,
-        IAppSettings settings)
+    public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
     {
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
         _dialogService = dialogService;
     }
 
 
+    /// <summary>
+    /// Executes MVVM button action`
+    /// </summary>
+    /// <returns></returns>
     [RelayCommand]
     private Task ExecuteAsync()
     {
