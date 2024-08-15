@@ -103,12 +103,17 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-beta.15 2024-08-14
+
+* Wizard component added from Engine
+* Nuget dependencies updated.
+
 ### v1.0.0-beta.12 2024-08-07
 
 * `SettingsFinder` copied from the main Shell project.
 * Shell settings as `IAppSettings` injected to `MainWindowViewModel`.
 * `commandex.env` file created with default parameters.
-* Nuget dependencied version updated.
+* Nuget dependencies updated.
 
 ### v1.0.0-beta.9 2024-08-05
 
