@@ -103,9 +103,13 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
-### v1.0.0-beta.15 2024-08-14
+### v1.0.0-rc.3
 
 * Wizard component added from Engine
+* Nuget dependencies updated.
+
+### v1.0.0-beta.15 2024-08-14
+
 * Nuget dependencies updated.
 
 ### v1.0.0-beta.12 2024-08-07
