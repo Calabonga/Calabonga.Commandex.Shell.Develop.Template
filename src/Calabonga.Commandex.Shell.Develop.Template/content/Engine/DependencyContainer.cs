@@ -34,8 +34,8 @@ internal static class DependencyContainer
         services.AddTransient(typeof(IWizardManager<>), typeof(WizardManager<>));
 
         // --------------------------------------------------
-        // Attach your definition from your project with your
-        // Commandex.Command implementation, uncomment line below and add your command type.
+        // 1. Attach command definition from your project where Commandex.Command implemented.
+        // 2. Then uncomment line below and add your command type.
         // services.AddDefinitions(typeof(WelcomeAppDefinition)); // <-- here should be your Command
         // --------------------------------------------------
 

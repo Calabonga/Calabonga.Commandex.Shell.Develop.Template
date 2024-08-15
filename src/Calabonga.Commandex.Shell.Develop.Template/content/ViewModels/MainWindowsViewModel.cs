@@ -18,7 +18,6 @@ public partial class MainWindowsViewModel : ViewModelBase
         _dialogService = dialogService;
     }
 
-
     /// <summary>
     /// Executes MVVM button action`
     /// </summary>
