@@ -20,11 +20,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-rc.3" />
+    <None Remove="logo.png" />
+    <None Remove="Views\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-rc.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
