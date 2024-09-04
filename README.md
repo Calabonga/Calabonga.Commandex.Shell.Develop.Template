@@ -102,6 +102,10 @@ This application can only test your Command for Commandex, but almost in a real 
 WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
+### v1.0.0-rc.6
+
+* Abstraction for configuration reader created.
+* Nuget dependencies updated.
 
 ### v1.0.0-rc.3
 
