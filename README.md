@@ -5,7 +5,7 @@ Consider previewing the README before uploading (https://learn.microsoft.com/en-
 
 ## Description
 
-This is a Developer version of the Command Executer (`Calabonga.Commandex`). Witch is created to runs commands of any type for any purposes. For example, to execute a stored procedure or just to copy some files to some destination. And so on... 
+This is a nuget-package [Calabonga.Commandex.Shell.Develop.Template](https://www.nuget.org/packages/Calabonga.Commandex.Shell.Develop.Template) (tools) that install to your Visual Studio a new type of the project. New type project can create a Developer version of the Command Executer (`Calabonga.Commandex`). Witch is created to runs commands of any type for any purposes. For example, to execute a stored procedure or just to copy some files to some destination. And so on... 
 
 ## What is Calabonga.Commandex
 
