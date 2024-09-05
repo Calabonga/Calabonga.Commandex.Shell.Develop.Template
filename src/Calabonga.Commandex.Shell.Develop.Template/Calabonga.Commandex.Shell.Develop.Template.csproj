@@ -4,7 +4,7 @@
     <!-- The package metadata. Fill in the properties marked as TODO below -->
     <!-- Follow the instructions on https://learn.microsoft.com/en-us/nuget/create-packages/package-authoring-best-practices -->
     <PackageId>Calabonga.Commandex.Shell.Develop.Template</PackageId>
-    <PackageVersion>1.0.0-rc.6</PackageVersion>
+    <PackageVersion>1.0.0-rc.7</PackageVersion>
     <Title>Calabonga.Commandex.Shell.Develop.Template</Title>
     <Authors>Calabonga</Authors>
     <Copyright>Calabonga SOFT © 2001-$([System.DateTime]::Now.ToString(yyyy))</Copyright>
@@ -13,7 +13,7 @@
     <PackageTags>commandex;calabonga;develope;shell;template</PackageTags>
     <PackageProjectUrl>https://github.com/Calabonga/Calabonga.Commandex.Shell.Develop.Template</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Abstraction over AppSettings configuration implemented</PackageReleaseNotes>
+    <PackageReleaseNotes>Engine dependencies updated.</PackageReleaseNotes>
 
     <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
     <PackageType>Template</PackageType>

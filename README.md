@@ -35,33 +35,35 @@ This application can only test your Command for Commandex, but almost in a real 
 2. Register your `ICommandexCommand` implementation in the `DependencyContainer.cs`.
 
     ``` csharp
-    internal static class DependencyContainer
+    internal static IServiceProvider ConfigureServices()
     {
-        internal static IServiceProvider ConfigureServices()
+        var services = new ServiceCollection();
+
+        services.AddLogging(options =>
         {
-            var services = new ServiceCollection();
+            options.AddSerilog(dispose: true);
+            options.AddDebug();
+        });
 
-            services.AddLogging(options =>
-            {
-                options.AddSerilog(dispose: true);
-                options.AddDebug();
-            });
+        services.AddSingleton<DefaultDialogView>();
+        services.AddSingleton<MainWindow>();
+        services.AddSingleton<ViewModels.MainWindowsViewModel>();
+        services.AddSingleton<IDialogService, DialogService>();
+        services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
+        services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
 
-            services.AddSingleton(typeof(DefaultDialogResult<>));
-            services.AddSingleton<DefaultDialogView>();
-            services.AddSingleton<MainWindow>();
-            services.AddSingleton<MainWindowsViewModel>();
-            services.AddSingleton<IDialogService, DialogService>();
-            services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
+        // dialogs and wizard
+        services.AddTransient<IWizardView, Wizard>();
+        services.AddTransient<IDialogService, DialogService>();
+        services.AddTransient(typeof(IWizardManager<>), typeof(WizardManager<>));
 
-            // --------------------------------------------------
-            // Attach your definition from your project with your
-            // Commandex.Command implementation, uncomment line below and add your command type.
-            // services.AddDefinitions(typeof(YourCommandDefinition)); // <-- here should be your Command
-            // --------------------------------------------------
+        // --------------------------------------------------
+        // 1. Attach command definition from your project where Commandex.Command implemented.
+        // 2. Then uncomment line below and add your command type.
+        // services.AddDefinitions(typeof(WelcomeAppDefinition)); // <-- uncomment line and register your command here
+        // --------------------------------------------------
 
-            return services.BuildServiceProvider();
-        }
+        return services.BuildServiceProvider();
     }
     ```
 
@@ -72,19 +74,24 @@ This application can only test your Command for Commandex, but almost in a real 
     {
         private readonly IDialogService _dialogService;
 
-        public MainWindowsViewModel(
-            IDialogService dialogService,
-            IAppSettings settings)
+        public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
         {
             Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
+            Version = "1.0.0-rc.7";
             _dialogService = dialogService;
         }
 
+        [ObservableProperty]
+        private string _version;
 
+        /// <summary>
+        /// Executes MVVM button action
+        /// </summary>
         [RelayCommand]
         private Task ExecuteAsync()
         {
-            _dialogService.ShowNotification("You do not attach your ICommandexCommand yet.");
+            _dialogService.ShowNotification("You do not attach your ICommandexCommand yet. " +
+                                            "Please add your component definition in the DependencyContainer.cs file.");
             return Task.CompletedTask;
         }
     }
@@ -102,6 +109,13 @@ This application can only test your Command for Commandex, but almost in a real 
 WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
+
+### v1.0.0-rc.7
+
+* Some instructions were updated.
+* Template default name parameter added.
+* Nuget dependencies updated.
+
 ### v1.0.0-rc.6
 
 * Abstraction for configuration reader created.

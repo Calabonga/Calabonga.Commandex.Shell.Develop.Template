@@ -16,7 +16,7 @@ public partial class MainWindowsViewModel : ViewModelBase
     public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
     {
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "1.0.0-rc.6";
+        Version = "1.0.0-rc.7";
         _dialogService = dialogService;
     }
 
@@ -24,13 +24,13 @@ public partial class MainWindowsViewModel : ViewModelBase
     private string _version;
 
     /// <summary>
-    /// Executes MVVM button action`
+    /// Executes MVVM button action
     /// </summary>
-    /// <returns></returns>
     [RelayCommand]
     private Task ExecuteAsync()
     {
-        _dialogService.ShowNotification("You do not attach your ICommandexCommand yet.");
+        _dialogService.ShowNotification("You do not attach your ICommandexCommand yet. " +
+                                        "Please add your component definition in the DependencyContainer.cs file.");
         return Task.CompletedTask;
     }
 }
