@@ -110,6 +110,10 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-rc.9 2024-09-07
+
+* Nuget dependencies updated.
+
 ### v1.0.0-rc.7
 
 * Some instructions were updated.
