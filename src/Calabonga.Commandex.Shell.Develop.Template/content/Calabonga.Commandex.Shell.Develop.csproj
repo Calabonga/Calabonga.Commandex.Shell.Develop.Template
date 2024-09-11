@@ -9,21 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Core\Engine\**" />
-    <Compile Remove="Core\Services\**" />
-    <Compile Remove="Properties\**" />
-    <EmbeddedResource Remove="Core\Engine\**" />
-    <EmbeddedResource Remove="Core\Services\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <None Remove="Core\Engine\**" />
-    <None Remove="Core\Services\**" />
-    <None Remove="Properties\**" />
-    <Page Remove="Core\Engine\**" />
-    <Page Remove="Core\Services\**" />
-    <Page Remove="Properties\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="logo.png" />
     <None Remove="Views\logo.png" />
   </ItemGroup>
@@ -33,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-rc.9" />
+    <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-rc.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />

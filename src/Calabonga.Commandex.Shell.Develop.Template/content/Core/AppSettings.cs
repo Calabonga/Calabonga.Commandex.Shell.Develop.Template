@@ -21,4 +21,9 @@ public class AppSettings : IAppSettings
     /// Artifacts folder name
     /// </summary>
     public required string ArtifactsFolderName { get; set; }
+
+    /// <summary>
+    /// Nuget Feed URL. Default is https://api.nuget.org/v3/index.json
+    /// </summary>
+    public required string NugetFeedUrl { get; set; }
 }
