@@ -38,7 +38,7 @@ internal static class DependencyContainer
         // --------------------------------------------------
         // 1. Attach command definition from your project where Commandex.Command implemented.
         // 2. Then uncomment line below and add your command type.
-        // services.AddDefinitions(typeof(WelcomeAppDefinition)); // <-- uncomment line and register your command here
+        // services.AddDefinitions(typeof(YourAppDefinition)); // <-- uncomment line and register your command here
         // --------------------------------------------------
 
         return services.BuildServiceProvider();

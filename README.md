@@ -110,6 +110,14 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-rc.10 2024-09-11
+
+* Nuget dependencies updated.
+* `AppSettings` update with parameter `NugetFeedUrl` moved into configuration file (.env).
+* `NugetFeedUrl` default feed URL is https://api.nuget.org/v3/index.json.
+* Default folder for logs set up to *../bin/{Debug|Release}/logs/** folder.
+* `SettingsFinder` marked as `static`.
+
 ### v1.0.0-rc.9 2024-09-07
 
 * Nuget dependencies updated.

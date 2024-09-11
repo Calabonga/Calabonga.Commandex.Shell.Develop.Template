@@ -16,7 +16,7 @@ public partial class App : Application
     {
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
-            .WriteTo.File("/logs/local-.log", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, shared: true)
+            .WriteTo.File("logs/local-.log", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, shared: true)
             .CreateLogger();
 
         Settings = SettingsFinder.Configure();
