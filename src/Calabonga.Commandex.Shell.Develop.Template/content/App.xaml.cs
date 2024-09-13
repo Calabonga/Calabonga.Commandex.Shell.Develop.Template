@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Calabonga.Commandex.Shell.Develop.Core;
+using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Shell.Develop.Engine;
 using Calabonga.Commandex.Shell.Develop.Views;
 using Microsoft.Extensions.DependencyInjection;

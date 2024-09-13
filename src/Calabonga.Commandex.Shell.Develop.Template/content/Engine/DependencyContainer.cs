@@ -1,10 +1,8 @@
 ﻿using Calabonga.Commandex.Engine.Base;
 using Calabonga.Commandex.Engine.Dialogs;
+using Calabonga.Commandex.Engine.Extensions;
 using Calabonga.Commandex.Engine.Settings;
-using Calabonga.Commandex.Engine.Wizards;
-using Calabonga.Commandex.Shell.Develop.Core;
 using Calabonga.Commandex.Shell.Develop.Views;
-using Calabonga.Commandex.Shell.Views.Dialogs;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -31,9 +29,8 @@ internal static class DependencyContainer
         services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
 
         // dialogs and wizard
-        services.AddTransient<IWizardView, Wizard>();
-        services.AddTransient<IDialogService, DialogService>();
-        services.AddTransient(typeof(IWizardManager<>), typeof(WizardManager<>));
+        services.AddDialogComponent();
+        services.AddWizardComponent();
 
         // --------------------------------------------------
         // 1. Attach command definition from your project where Commandex.Command implemented.

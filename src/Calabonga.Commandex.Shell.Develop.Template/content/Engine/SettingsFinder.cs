@@ -1,13 +1,14 @@
-﻿using DotNetEnv;
+﻿using Calabonga.Commandex.Engine.Settings;
+using DotNetEnv;
 
-namespace Calabonga.Commandex.Shell.Develop.Core;
+namespace Calabonga.Commandex.Shell.Develop.Engine;
 
 /// <summary>
-/// // Calabonga: Summary required (SettingsFinder 2024-08-07 07:52)
+/// Environment file settings reader for current application (Commandex)
 /// </summary>
 internal static class SettingsFinder
 {
-    public static AppSettings Configure()
+    internal static AppSettings Configure()
     {
         Env.Load("commandex.env", LoadOptions.TraversePath());
 
