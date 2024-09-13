@@ -110,12 +110,20 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### 1.0.0-rc13 2024-09-13
 
-### v1.0.0-rc.11 2024-09-11
+* Nugets versions updated
+* `OnSetParameter()` method created for `IDialogResult` in the Engine
+* `DialogService` implementation moved into engine nuget
+* `NotificationDialog` implementation moved into engine nuget
+* `Wizard` component moved into engine nuget
+* `AppSettings` moved into engine nuget
+
+### 1.0.0-rc.11 2024-09-11
 
 * Engine-nuget updated as dependency.
 
-### v1.0.0-rc.10 2024-09-11
+### 1.0.0-rc.10 2024-09-11
 
 * Nuget dependencies updated.
 * `AppSettings` update with parameter `NugetFeedUrl` moved into configuration file (.env).
@@ -123,49 +131,49 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 * Default folder for logs set up to *../bin/{Debug|Release}/logs/** folder.
 * `SettingsFinder` marked as `static`.
 
-### v1.0.0-rc.9 2024-09-07
+### 1.0.0-rc.9 2024-09-07
 
 * Nuget dependencies updated.
 
-### v1.0.0-rc.7
+### 1.0.0-rc.7
 
 * Some instructions were updated.
 * Template default name parameter added.
 * Nuget dependencies updated.
 
-### v1.0.0-rc.6
+### 1.0.0-rc.6
 
 * Abstraction for configuration reader created.
 * Nuget dependencies updated.
 
-### v1.0.0-rc.3
+### 1.0.0-rc.3
 
 * Wizard component added from Engine
 * Nuget dependencies updated.
 
-### v1.0.0-beta.15 2024-08-14
+### 1.0.0-beta.15 2024-08-14
 
 * Nuget dependencies updated.
 
-### v1.0.0-beta.12 2024-08-07
+### 1.0.0-beta.12 2024-08-07
 
 * `SettingsFinder` copied from the main Shell project.
 * Shell settings as `IAppSettings` injected to `MainWindowViewModel`.
 * `commandex.env` file created with default parameters.
 * Nuget dependencies updated.
 
-### v1.0.0-beta.9 2024-08-05
+### 1.0.0-beta.9 2024-08-05
 
 * Core from original Shell updated.
 * Nuget dependencies updated.
 * `MainWindow` updated with new welcome message (instructions).
 * 
-### v1.0.0-beta.5 2024-08-01
+### 1.0.0-beta.5 2024-08-01
 
 * `GitInfo` nuget package removed because throwing error when git not used.
 * Readme.md updated with screenshot and som code snippets.
 
 
-### v1.0.0-beta.1 2024-08-01
+### 1.0.0-beta.1 2024-08-01
 
 * First commit
