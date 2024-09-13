@@ -11,7 +11,7 @@
                 VerticalAlignment="Center">
         <StackPanel>
             <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="OrangeRed" TextAlignment="Center" Margin="0,0,8,0"/>
+                <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="Orange" TextAlignment="Center" Margin="0,0,8,0"/>
                 <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
