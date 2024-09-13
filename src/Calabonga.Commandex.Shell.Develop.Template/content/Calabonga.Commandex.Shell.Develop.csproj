@@ -9,16 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="logo.png" />
-    <None Remove="Views\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="logo.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-rc.11" />
+    <PackageReference Include="Calabonga.Commandex.Engine" Version="1.0.0-rc.13" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
