@@ -110,7 +110,13 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
-### 1.0.0-rc13 2024-09-13
+### 1.0.0-rc.15 2024-09-14
+
+* Nugets dependencies updated
+* Restart Wizard command crash fixed.
+* NotificationDialog windows size fixed.
+
+### 1.0.0-rc.13 2024-09-13
 
 * Nugets versions updated
 * `OnSetParameter()` method created for `IDialogResult` in the Engine
