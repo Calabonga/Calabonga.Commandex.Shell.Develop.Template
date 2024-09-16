@@ -110,6 +110,12 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-rc.16 2024-09-16
+
+* Engine nuget updated RC.16
+* `IDialogResult` renamed to `IViewModel`
+* New property `Tags` added to `ICommandexCommand` for future commands groups management (Engine)
+
 ### 1.0.0-rc.15 2024-09-14
 
 * Nugets dependencies updated

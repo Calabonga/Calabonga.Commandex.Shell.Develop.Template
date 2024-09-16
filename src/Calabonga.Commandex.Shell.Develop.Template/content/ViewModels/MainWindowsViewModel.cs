@@ -16,7 +16,7 @@ public partial class MainWindowsViewModel : ViewModelBase
     public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
     {
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "1.0.0-rc.15";
+        Version = "1.0.0-rc.16";
         _dialogService = dialogService;
     }
 
