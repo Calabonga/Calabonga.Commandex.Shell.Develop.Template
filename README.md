@@ -189,3 +189,7 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 ### 1.0.0-beta.1 2024-08-01
 
 * First commit
+
+## Видео (Video)
+
+В основном репозитории [Calabonga.Commandex.Shell](https://github.com/Calabonga/Calabonga.Commandex.Shell) есть несколько видео с инструкциями и разъяснениями, как использовать Commandex. А также видео о том, какие типы команд существуют и как для Commandex создавать команды разных типов.
