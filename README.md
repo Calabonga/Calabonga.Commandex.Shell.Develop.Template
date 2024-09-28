@@ -110,6 +110,10 @@ WPF, MVVM, CommunityToolkit, AppDefinitions, etc.
 
 ## Versions history 
 
+### v1.0.0-rc.17 2024-09-28
+
+* Engine nuget updated RC.17
+
 ### v1.0.0-rc.16 2024-09-16
 
 * Engine nuget updated RC.16
