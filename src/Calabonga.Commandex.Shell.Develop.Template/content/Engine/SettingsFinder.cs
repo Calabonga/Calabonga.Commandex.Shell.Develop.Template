@@ -12,9 +12,12 @@ internal static class SettingsFinder
     {
         Env.Load("commandex.env", LoadOptions.TraversePath());
 
+        var commandsPath = Environment.GetEnvironmentVariable("COMMANDS_FOLDER") ?? throw new ArgumentNullException($"COMMANDS_FOLDER");
+
         var appSettings = new AppSettings
         {
             CommandsPath = Environment.GetEnvironmentVariable("COMMANDS_FOLDER") ?? throw new ArgumentNullException($"COMMANDS_FOLDER"),
+            SettingsPath = Environment.GetEnvironmentVariable("SETTINGS_FOLDER") ?? commandsPath,
             ShowSearchPanelOnStartup = bool.Parse(Environment.GetEnvironmentVariable("SHOW_SEARCH_PANEL_ONSTARTUP") ?? "false"),
             ArtifactsFolderName = Environment.GetEnvironmentVariable("ARTIFACTS_FOLDER_NAME") ?? "Artifacts",
             NugetFeedUrl = Environment.GetEnvironmentVariable("NUGET_FEED_URL") ?? "https://api.nuget.org/v3/index.json"
