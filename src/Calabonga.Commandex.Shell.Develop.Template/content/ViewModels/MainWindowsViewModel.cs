@@ -17,7 +17,7 @@ public partial class MainWindowsViewModel : ViewModelBase
     {
         _dialogService = dialogService;
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "2.0.0-beta.1 (NET9.0)";
+        Version = "2.0.0 (NET9.0)";
         Message = "You do not attach your ICommandexCommand yet.";
     }
 
