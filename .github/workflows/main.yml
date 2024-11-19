@@ -1,4 +1,4 @@
-name: Nuget Package (NET9)
+name: Nuget Packege (NET9.0)
 
 on:
   push:

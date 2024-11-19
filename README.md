@@ -104,6 +104,8 @@ This application can only test your Command for Commandex, but almost in a real 
 
 ## Screenshot
 
+v1.0.0
+
 ![image](https://github.com/user-attachments/assets/9393d2a6-fbf8-40ff-a3df-ee1b185f705e)
 
 ## Ingredients
