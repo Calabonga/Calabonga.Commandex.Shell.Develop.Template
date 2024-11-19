@@ -9,6 +9,9 @@ using Serilog;
 
 namespace Calabonga.Commandex.Shell.Develop.Engine;
 
+/// <summary>
+/// Dependency registration root
+/// </summary>
 internal static class DependencyContainer
 {
     internal static IServiceProvider ConfigureServices()

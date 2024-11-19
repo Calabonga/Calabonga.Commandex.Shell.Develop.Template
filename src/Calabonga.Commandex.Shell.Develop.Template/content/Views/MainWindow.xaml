@@ -5,30 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="{Binding Title}" Height="450" Width="800" Icon="/logo.png">
-    <Border Margin="10" Padding="10" 
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-        <StackPanel>
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="DarkOrange" TextAlignment="Center" Margin="0,0,8,0"/>
-                <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="{Binding Version, StringFormat='v{0}'}" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,0,14"/>
-            </StackPanel>
-            <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" FontSize="14" Margin="0,0,0,10"/>
-            <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs"/>
-            <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand"/>
-            <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
-            <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
-            <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
-            <Button IsDefault="True"
+        Background="WhiteSmoke"
+        Title="{Binding Title}" Height="441" Width="800" Icon="/logo.png">
+    <StackPanel Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="NET 9.0" Foreground="Gray" FontSize="10"/>
+        </StackPanel>
+
+        <Border Margin="10" Padding="10" Background="white"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="DarkOrange" TextAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Version, StringFormat='v{0}'}" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,0,14"/>
+                </StackPanel>
+                <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" FontSize="14" Margin="0,0,0,10"/>
+                <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs"/>
+                <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand"/>
+                <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
+                <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
+                <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
+                <Button IsDefault="True"
                     Padding="9"
                     MinWidth="150"
                     Content="Execute" Command="{Binding ExecuteCommand}"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
-                    Margin="0,30,0,0"/>
-        </StackPanel>
-    </Border>
+                    Margin="0,30,0,30"/>
+                <TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="OrangeRed" FontSize="12"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
 </Window>

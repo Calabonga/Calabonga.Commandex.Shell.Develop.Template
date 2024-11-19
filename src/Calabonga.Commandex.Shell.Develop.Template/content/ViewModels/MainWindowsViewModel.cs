@@ -15,13 +15,17 @@ public partial class MainWindowsViewModel : ViewModelBase
 
     public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
     {
-        Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "1.4.2";
         _dialogService = dialogService;
+        Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
+        Version = "2.0.0-beta.1 (NET9.0)";
+        Message = "You do not attach your ICommandexCommand yet.";
     }
 
     [ObservableProperty]
     private string _version;
+
+    [ObservableProperty]
+    private string _message;
 
     /// <summary>
     /// Executes MVVM button action
@@ -29,7 +33,7 @@ public partial class MainWindowsViewModel : ViewModelBase
     [RelayCommand]
     private Task ExecuteAsync()
     {
-        _dialogService.ShowNotification("You do not attach your ICommandexCommand yet.");
+        _dialogService.ShowNotification(Message);
         return Task.CompletedTask;
     }
 }
