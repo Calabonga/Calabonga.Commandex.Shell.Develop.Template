@@ -1,39 +1,122 @@
 ﻿using Calabonga.Commandex.Engine.Base;
-using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
 /// <summary>
 /// ViewModel for MainWindow View.
 /// </summary>
-public partial class MainWindowsViewModel : ViewModelBase
+public partial class MainWindowsViewModel : ViewModelBase, IDisposable
 {
-    private readonly IDialogService _dialogService;
+    private readonly ICommandexCommand _command;
+    private readonly IResultProcessor _resultProcessor;
+    private readonly DispatcherTimer _statusTimer;
 
-    public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
+    public MainWindowsViewModel(
+        ICommandexCommand command,
+        IResultProcessor resultProcessor,
+        IAppSettings settings)
     {
-        _dialogService = dialogService;
+        _statusTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
+        _command = command;
+        _resultProcessor = resultProcessor;
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "2.0.0 (NET9.0)";
-        Message = "You do not attach your ICommandexCommand yet.";
+        Version = "2.1.0 (NET9.0)";
+        Message = $"Testing command [{_command.DisplayName}]";
+
+        InitTimer();
     }
 
-    [ObservableProperty]
-    private string _version;
-
-    [ObservableProperty]
-    private string _message;
+    #region property Message
 
     /// <summary>
-    /// Executes MVVM button action
+    /// Property Message
+    /// </summary>
+    [ObservableProperty] private string _message;
+
+    #endregion
+
+    #region property Version
+
+    /// <summary>
+    /// Property Version
+    /// </summary>
+    [ObservableProperty] private string _version;
+
+    #endregion
+
+    #region property Status
+
+    /// <summary>
+    /// Property Status
+    /// </summary>
+    [ObservableProperty] private string _status;
+
+    #endregion
+
+    #region property StatusBrush
+
+    /// <summary>
+    /// Property StatusBrush
+    /// </summary>
+    [ObservableProperty] private SolidColorBrush _statusBrush;
+
+    #endregion
+
+    #region command ExecuteCommand
+
+    /// <summary>
+    /// Executes MVVM button action and process result from command.
+    /// Do not make any changes to this method if you are not sure.
     /// </summary>
     [RelayCommand]
-    private Task ExecuteAsync()
+    private async Task ExecuteAsync()
     {
-        _dialogService.ShowNotification(Message);
-        return Task.CompletedTask;
+        var result = await _command.ExecuteCommandAsync();
+        if (!result.Ok)
+        {
+            Message = result.Error.Message;
+            StatusBrush = new SolidColorBrush(Colors.Red);
+            StartTimer();
+            return;
+        }
+
+        _resultProcessor.ProcessCommand(_command);
+        Status = result.Ok ? "Success" : "Failed";
+        StatusBrush = new SolidColorBrush(Colors.ForestGreen);
+        StartTimer();
+    }
+
+    #endregion
+
+    #region private helpers
+
+    private void StartTimer()
+    {
+        _statusTimer.IsEnabled = true;
+        _statusTimer.Start();
+
+    }
+
+    private void InitTimer() => _statusTimer.Tick += OnTimerTick;
+
+    private void OnTimerTick(object? sender, EventArgs e)
+    {
+        Status = string.Empty;
+        StatusBrush = new SolidColorBrush(Colors.Transparent);
+        _statusTimer.Stop();
+        _statusTimer.IsEnabled = false;
+    }
+
+    #endregion
+
+    public void Dispose()
+    {
+        _statusTimer.Tick -= OnTimerTick;
+        _command.Dispose();
     }
 }
