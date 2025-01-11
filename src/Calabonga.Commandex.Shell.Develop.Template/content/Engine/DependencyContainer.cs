@@ -1,7 +1,10 @@
 ﻿using Calabonga.Commandex.Engine.Base;
 using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Extensions;
+using Calabonga.Commandex.Engine.Processors;
+using Calabonga.Commandex.Engine.Processors.Base;
 using Calabonga.Commandex.Engine.Settings;
+using Calabonga.Commandex.Shell.Develop.ViewModels;
 using Calabonga.Commandex.Shell.Develop.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,12 +27,17 @@ internal static class DependencyContainer
             options.AddDebug();
         });
 
+        // default engine
         services.AddSingleton<DefaultDialogView>();
         services.AddSingleton<MainWindow>();
-        services.AddSingleton<ViewModels.MainWindowsViewModel>();
+        services.AddSingleton<MainWindowsViewModel>();
         services.AddSingleton<IDialogService, DialogService>();
         services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
         services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
+
+        // result processor 
+        services.AddSingleton<IResultProcessor, AdvancedResultProcessor>();
+        services.AddSingleton<IProcessor, Processor>();
 
         // dialogs and wizard
         services.AddDialogComponent();
