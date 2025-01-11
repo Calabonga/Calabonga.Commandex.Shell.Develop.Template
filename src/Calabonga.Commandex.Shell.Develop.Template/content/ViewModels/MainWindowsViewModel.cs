@@ -1,11 +1,4 @@
-﻿using Calabonga.Commandex.Engine.Base;
-using Calabonga.Commandex.Engine.Settings;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using System.Windows.Media;
-using System.Windows.Threading;
-
-namespace Calabonga.Commandex.Shell.Develop.ViewModels;
+﻿namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
 /// <summary>
 /// ViewModel for MainWindow View.
@@ -26,7 +19,7 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
         _resultProcessor = resultProcessor;
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
         Version = "2.1.0 (NET9.0)";
-        Message = $"Testing command [{_command.DisplayName}]";
+        Message = _command.DisplayName;
 
         InitTimer();
     }
@@ -80,13 +73,14 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
         if (!result.Ok)
         {
             Message = result.Error.Message;
+            Status = "Failed";
             StatusBrush = new SolidColorBrush(Colors.Red);
             StartTimer();
             return;
         }
 
         _resultProcessor.ProcessCommand(_command);
-        Status = result.Ok ? "Success" : "Failed";
+        Status = "Success";
         StatusBrush = new SolidColorBrush(Colors.ForestGreen);
         StartTimer();
     }
