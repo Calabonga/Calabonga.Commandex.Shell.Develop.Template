@@ -1,9 +1,10 @@
-﻿using System.Windows;
-using Calabonga.Commandex.Engine.Settings;
+﻿using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Shell.Develop.Engine;
+using Calabonga.Commandex.Shell.Develop.ViewModels;
 using Calabonga.Commandex.Shell.Develop.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using System.Windows;
 
 namespace Calabonga.Commandex.Shell.Develop;
 
@@ -32,12 +33,12 @@ public partial class App : Application
     /// <summary>
     /// Gets the current <see cref="App"/> instance in use
     /// </summary>
-    public new static App Current => (App)Application.Current;
+    public static new App Current => (App)Application.Current;
 
     /// <summary>
     /// Gets the <see cref="IServiceProvider"/> instance to resolve application services.
     /// </summary>
-    public IServiceProvider Services { get; private set; }
+    private IServiceProvider Services { get; set; }
 
     /// <summary>Raises the <see cref="E:System.Windows.Application.Startup" /> event.</summary>
     /// <param name="e">A <see cref="T:System.Windows.StartupEventArgs" /> that contains the event data.</param>
@@ -46,7 +47,7 @@ public partial class App : Application
         base.OnStartup(e);
 
         var shell = Services.GetService<MainWindow>();
-        var shellViewModel = Services.GetService<ViewModels.MainWindowsViewModel>();
+        var shellViewModel = Services.GetService<MainWindowsViewModel>();
 
         if (shellViewModel is null || shell is null)
         {

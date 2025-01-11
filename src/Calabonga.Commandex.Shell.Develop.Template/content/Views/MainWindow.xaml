@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Background="WhiteSmoke"
-        Title="{Binding Title}" Height="441" Width="800" Icon="/logo.png">
+        Title="{Binding Title}" Height="500" Width="800" Icon="/logo.png">
     <StackPanel Margin="10">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="NET 9.0" Foreground="Gray" FontSize="10"/>
@@ -24,18 +24,23 @@
                     <TextBlock Text="{Binding Version, StringFormat='v{0}'}" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,0,14"/>
                 </StackPanel>
                 <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" FontSize="14" Margin="0,0,0,10"/>
-                <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs"/>
-                <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand"/>
+                <TextBlock TextWrapping="Wrap" Text="0. Add project reference into Shell project and mark Shell-project as start up."/>
+                <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs."/>
+                <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand."/>
                 <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
                 <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
                 <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
+                <StackPanel  Margin="0,30,0,8" HorizontalAlignment="Stretch" >
+                    <TextBlock Text="{Binding Message}" FontSize="14" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Status}" Foreground="{Binding StatusBrush}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
                 <Button IsDefault="True"
                     Padding="9"
                     MinWidth="150"
-                    Content="Execute" Command="{Binding ExecuteCommand}"
+                    Content="Execute and Process" 
+                    Command="{Binding ExecuteCommand}"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
-                    Margin="0,30,0,30"/>
-                <TextBlock Text="{Binding Message}" HorizontalAlignment="Center" Foreground="OrangeRed" FontSize="12"/>
+                    Margin="0,8,0,15"/>
             </StackPanel>
         </Border>
     </StackPanel>
