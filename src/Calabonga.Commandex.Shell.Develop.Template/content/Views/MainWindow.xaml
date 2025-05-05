@@ -31,7 +31,7 @@
                 <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
                 <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
                 <StackPanel  Margin="0,30,0,8" HorizontalAlignment="Stretch" >
-                    <TextBlock Text="{Binding Message}" FontSize="14" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Message}" FontSize="14" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="BlueViolet"/>
                     <TextBlock Text="{Binding Status}" Foreground="{Binding StatusBrush}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold"/>
                 </StackPanel>
                 <Button IsDefault="True"
