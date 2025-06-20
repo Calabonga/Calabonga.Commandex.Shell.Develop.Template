@@ -4,6 +4,7 @@ using Calabonga.Commandex.Engine.Extensions;
 using Calabonga.Commandex.Engine.Processors;
 using Calabonga.Commandex.Engine.Processors.Base;
 using Calabonga.Commandex.Engine.Settings;
+using Calabonga.Commandex.Engine.ViewModelLocator;
 using Calabonga.Commandex.Shell.Develop.ViewModels;
 using Calabonga.Commandex.Shell.Develop.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,6 +50,8 @@ internal static class DependencyContainer
         // services.AddDefinitions(typeof(YourAppDefinition)); // <-- uncomment line and register your command here
         // --------------------------------------------------
 
-        return services.BuildServiceProvider();
+        var buildServiceProvider = services.BuildServiceProvider();
+        ViewModelLocationProvider.SetDefaultViewModelFactory(type => buildServiceProvider.GetRequiredService(type));
+        return buildServiceProvider;
     }
 }
