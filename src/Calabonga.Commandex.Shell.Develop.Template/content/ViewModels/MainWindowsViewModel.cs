@@ -1,4 +1,11 @@
-﻿namespace Calabonga.Commandex.Shell.Develop.ViewModels;
+﻿using Calabonga.Commandex.Engine.Base;
+using Calabonga.Commandex.Engine.Settings;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Windows.Media;
+using System.Windows.Threading;
+
+namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
 /// <summary>
 /// ViewModel for MainWindow View.
@@ -18,7 +25,7 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
         _command = command;
         _resultProcessor = resultProcessor;
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "2.1.0 (NET9.0)";
+        Version = "2.3.0";
         Message = _command.DisplayName;
 
         InitTimer();
@@ -93,10 +100,12 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
     {
         _statusTimer.IsEnabled = true;
         _statusTimer.Start();
-
     }
 
-    private void InitTimer() => _statusTimer.Tick += OnTimerTick;
+    private void InitTimer()
+    {
+        _statusTimer.Tick += OnTimerTick;
+    }
 
     private void OnTimerTick(object? sender, EventArgs e)
     {

@@ -3,45 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Calabonga.Commandex.Shell.Develop.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Background="WhiteSmoke"
         Title="{Binding Title}" Height="500" Width="800" Icon="/logo.png">
-    <StackPanel Margin="10">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="NET 9.0" Foreground="Gray" FontSize="10"/>
-        </StackPanel>
 
-        <Border Margin="10" Padding="10" Background="white"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center">
-            <StackPanel>
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="DarkOrange" TextAlignment="Center" Margin="0,0,8,0"/>
-                    <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding Version, StringFormat='v{0}'}" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,0,14"/>
-                </StackPanel>
-                <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" FontSize="14" Margin="0,0,0,10"/>
-                <TextBlock TextWrapping="Wrap" Text="0. Add project reference into Shell project and mark Shell-project as start up."/>
-                <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs."/>
-                <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand."/>
-                <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
-                <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
-                <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
-                <StackPanel  Margin="0,30,0,8" HorizontalAlignment="Stretch" >
-                    <TextBlock Text="{Binding Message}" FontSize="14" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="BlueViolet"/>
-                    <TextBlock Text="{Binding Status}" Foreground="{Binding StatusBrush}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold"/>
-                </StackPanel>
-                <Button IsDefault="True"
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="NET 9.0" Foreground="Gray" FontSize="10" HorizontalAlignment="Right"/>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Executor">
+                <Border Margin="10" Padding="10" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="DarkOrange" TextAlignment="Center" Margin="0,0,8,0"/>
+                            <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding Version, StringFormat='v{0}'}" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,0,14"/>
+                        </StackPanel>
+                        <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" FontSize="14" Margin="0,0,0,10"/>
+                        <TextBlock TextWrapping="Wrap" Text="0. Add project reference into Shell project and mark Shell-project as start up."/>
+                        <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs."/>
+                        <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand."/>
+                        <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
+                        <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
+                        <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
+                        <StackPanel  Margin="0,30,0,8" HorizontalAlignment="Stretch" >
+                            <TextBlock Text="{Binding Message}" FontSize="13" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="BlueViolet"/>
+                            <TextBlock Text="{Binding Status}" Foreground="{Binding StatusBrush}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        </StackPanel>
+                        <Button IsDefault="True"
                     Padding="9"
                     MinWidth="150"
                     Content="Execute and Process" 
                     Command="{Binding ExecuteCommand}"
                     VerticalAlignment="Top" HorizontalAlignment="Center"
                     Margin="0,8,0,15"/>
-            </StackPanel>
-        </Border>
-    </StackPanel>
+                    </StackPanel>
+                </Border>
+            </TabItem>
+            <TabItem Header="Settings">
+                <views:SettingsView/>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>
