@@ -32,6 +32,7 @@ internal static class DependencyContainer
         services.AddSingleton<DefaultDialogView>();
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowsViewModel>();
+        services.AddSingleton<SettingsViewModel>();
         services.AddSingleton<IDialogService, DialogService>();
         services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
         services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
