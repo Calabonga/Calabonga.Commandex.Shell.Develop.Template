@@ -4,6 +4,7 @@ using Calabonga.Commandex.Engine.Extensions;
 using Calabonga.Commandex.Engine.Processors;
 using Calabonga.Commandex.Engine.Processors.Base;
 using Calabonga.Commandex.Engine.Settings;
+using Calabonga.Commandex.Engine.ToastNotifications;
 using Calabonga.Commandex.Engine.ViewModelLocator;
 using Calabonga.Commandex.Shell.Develop.Sample;
 using Calabonga.Commandex.Shell.Develop.ViewModels;
@@ -38,6 +39,9 @@ internal static class DependencyContainer
         services.AddSingleton<IDialogService, DialogService>();
         services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
         services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
+
+        // toast notifications
+        services.AddScoped<INotificationManager, NotificationManager>();
 
         // result processor 
         services.AddSingleton<IResultProcessor, AdvancedResultProcessor>();

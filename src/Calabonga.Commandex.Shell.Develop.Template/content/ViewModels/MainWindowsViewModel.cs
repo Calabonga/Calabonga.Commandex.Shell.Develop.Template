@@ -1,9 +1,9 @@
 ﻿using Calabonga.Commandex.Engine.Base;
 using Calabonga.Commandex.Engine.Settings;
+using Calabonga.Commandex.Engine.ToastNotifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
@@ -14,21 +14,19 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
 {
     private readonly ICommandexCommand _command;
     private readonly IResultProcessor _resultProcessor;
-    private readonly DispatcherTimer _statusTimer;
+    private readonly INotificationManager _notificationManager;
 
     public MainWindowsViewModel(
         ICommandexCommand command,
         IResultProcessor resultProcessor,
-        IAppSettings settings)
+        IAppSettings settings, INotificationManager notificationManager)
     {
-        _statusTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
         _command = command;
         _resultProcessor = resultProcessor;
+        _notificationManager = notificationManager;
         Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
         Version = "2.3.0";
         Message = _command.DisplayName;
-
-        InitTimer();
     }
 
     #region property Message
@@ -46,15 +44,6 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
     /// Property Version
     /// </summary>
     [ObservableProperty] private string _version;
-
-    #endregion
-
-    #region property Status
-
-    /// <summary>
-    /// Property Status
-    /// </summary>
-    [ObservableProperty] private string _status;
 
     #endregion
 
@@ -80,46 +69,20 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
         if (!result.Ok)
         {
             Message = result.Error.Message;
-            Status = "Failed";
             StatusBrush = new SolidColorBrush(Colors.Red);
-            StartTimer();
+            _notificationManager.Show(NotificationManager.CreateErrorToast(Message), "NotificationZone");
             return;
         }
 
+        _notificationManager.Show(NotificationManager.CreateSuccessToast("Successfully executed"), "NotificationZone");
         _resultProcessor.ProcessCommand(_command);
-        Status = "Success";
         StatusBrush = new SolidColorBrush(Colors.ForestGreen);
-        StartTimer();
-    }
-
-    #endregion
-
-    #region private helpers
-
-    private void StartTimer()
-    {
-        _statusTimer.IsEnabled = true;
-        _statusTimer.Start();
-    }
-
-    private void InitTimer()
-    {
-        _statusTimer.Tick += OnTimerTick;
-    }
-
-    private void OnTimerTick(object? sender, EventArgs e)
-    {
-        Status = string.Empty;
-        StatusBrush = new SolidColorBrush(Colors.Transparent);
-        _statusTimer.Stop();
-        _statusTimer.IsEnabled = false;
     }
 
     #endregion
 
     public void Dispose()
     {
-        _statusTimer.Tick -= OnTimerTick;
         _command.Dispose();
     }
 }
