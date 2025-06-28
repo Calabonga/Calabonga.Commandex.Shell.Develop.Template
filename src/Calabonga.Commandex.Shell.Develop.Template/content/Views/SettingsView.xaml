@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModelLocator="clr-namespace:Calabonga.Commandex.Engine.ViewModelLocator;assembly=Calabonga.Commandex.Engine"
-             xmlns:engine="clr-namespace:Calabonga.Commandex.Shell.Develop.Engine"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              viewModelLocator:ViewModelLocator.AutoBindingViewModel="True"
              mc:Ignorable="d" 

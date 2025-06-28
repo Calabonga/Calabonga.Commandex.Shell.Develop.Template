@@ -5,8 +5,10 @@ using Calabonga.Commandex.Engine.Processors;
 using Calabonga.Commandex.Engine.Processors.Base;
 using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Engine.ViewModelLocator;
+using Calabonga.Commandex.Shell.Develop.Sample;
 using Calabonga.Commandex.Shell.Develop.ViewModels;
 using Calabonga.Commandex.Shell.Develop.Views;
+using Calabonga.Wpf.AppDefinitions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -48,7 +50,8 @@ internal static class DependencyContainer
         // --------------------------------------------------
         // 1. Attach command definition from your project where Commandex.Command implemented.
         // 2. Then uncomment line below and add your command type.
-        // services.AddDefinitions(typeof(YourAppDefinition)); // <-- uncomment line and register your command here
+        // services.AddDefinitions(typeof(YourAppDefinition)); // <-- uncomment this line and register your command here
+        services.AddDefinitions(typeof(SampleCommandDefinition)); // <-- and comment this line
         // --------------------------------------------------
 
         var buildServiceProvider = services.BuildServiceProvider();

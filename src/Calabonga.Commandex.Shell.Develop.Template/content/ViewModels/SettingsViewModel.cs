@@ -12,7 +12,7 @@ public partial class SettingsViewModel : ViewModelBase
     /// <summary>
     /// Property Data
     /// </summary>
-    [ObservableProperty] private string[] _data;
+    [ObservableProperty] private string[]? _data;
 
     #endregion
 
