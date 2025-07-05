@@ -7,7 +7,7 @@
     "Desktop"
   ],
   "name": "WPF Application for Commandex",
-  "description": "The implementation of the AppDefinitions for Commandex Framework (WPF). This is an emulation of the Commandex Shell that helps to easy developer a CommandexCommand components.",
+  "description": "Template for WPF Application with CommunityToolkit.Mvvm installed. This application is a simple Commandex Shell emulation that helps developers create a CommandexCommand components.",
   "identity": "Calabonga.Commandex.Shell.Develop",
   "shortName": "wpfshell",
   "tags": {

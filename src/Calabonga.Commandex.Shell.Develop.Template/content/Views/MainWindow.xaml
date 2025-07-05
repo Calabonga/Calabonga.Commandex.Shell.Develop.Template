@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:Calabonga.Commandex.Engine.ToastNotifications.Controls;assembly=Calabonga.Commandex.Engine"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="{Binding Title}" Height="500" Width="800" Icon="/logo.png">
+        Title="{Binding Path=Title}" Height="600" Width="800" Icon="/logo.png">
 
     <Grid>
         <Grid Margin="2">
@@ -25,8 +25,9 @@
                                 <TextBlock Text="Welcome to Commandex" FontSize="22" Foreground="DarkOrange" TextAlignment="Center" Margin="0,0,8,0"/>
                                 <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Text="{Binding Path=Version, StringFormat='v{0}'}" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,0,14"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,14">
+                                <TextBlock Text="Commandex Engine version" Foreground="Gray" FontSize="12" TextAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBlock Text="{Binding Path=Version}" Foreground="Gray" FontSize="12" TextAlignment="Center" />
                             </StackPanel>
                             <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" FontSize="14" Margin="0,0,0,10"/>
                             <TextBlock TextWrapping="Wrap" Text="0. Add project reference into Shell project and mark Shell-project as start up."/>
@@ -36,8 +37,12 @@
                             <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
                             <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
                             <StackPanel  Margin="0,30,0,8" HorizontalAlignment="Stretch" >
-                                <TextBlock Text="{Binding Path=Message}" FontSize="13" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="BlueViolet"/>
-                                <TextBlock Text="{Binding Path=Status}" Foreground="{Binding Path=StatusBrush}" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Text="Command under testing:"  FontSize="13" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Path=Message}" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="BlueViolet"/>
+                                <TextBlock Text="{Binding Path=Metadata.Version}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=Metadata.TypeName}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=Metadata.Description}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=Metadata.CopyrightInfo}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center"
                                     Margin="0,8,0,15">

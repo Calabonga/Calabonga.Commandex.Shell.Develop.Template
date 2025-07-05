@@ -3,7 +3,6 @@ using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Engine.ToastNotifications;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Windows.Media;
 
 namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
@@ -24,11 +23,12 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
         _command = command;
         _resultProcessor = resultProcessor;
         _notificationManager = notificationManager;
-        Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-        Version = "2.3.0";
+        Title = $"Commandex Shell Emulator ({settings.CommandsPath})";
+        Version = GetEngineVersion();
         Message = _command.DisplayName;
-    }
 
+        Metadata = _command;
+    }
     #region property Message
 
     /// <summary>
@@ -47,12 +47,12 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
 
     #endregion
 
-    #region property StatusBrush
+    #region property Metadata
 
     /// <summary>
-    /// Property StatusBrush
+    /// Property Metadata
     /// </summary>
-    [ObservableProperty] private SolidColorBrush _statusBrush;
+    [ObservableProperty] private ICommandexCommand _metadata;
 
     #endregion
 
@@ -69,14 +69,12 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
         if (!result.Ok)
         {
             Message = result.Error.Message;
-            StatusBrush = new SolidColorBrush(Colors.Red);
             _notificationManager.Show(NotificationManager.CreateErrorToast(Message), "NotificationZone");
             return;
         }
 
         _notificationManager.Show(NotificationManager.CreateSuccessToast("Successfully executed"), "NotificationZone");
         _resultProcessor.ProcessCommand(_command);
-        StatusBrush = new SolidColorBrush(Colors.ForestGreen);
     }
 
     #endregion
@@ -84,5 +82,23 @@ public partial class MainWindowsViewModel : ViewModelBase, IDisposable
     public void Dispose()
     {
         _command.Dispose();
+    }
+
+    /// <summary>
+    /// Extracts Engine version
+    /// </summary>
+    /// <returns></returns>
+    private string GetEngineVersion()
+    {
+        var dll = AppDomain.CurrentDomain
+            .GetAssemblies()
+            .FirstOrDefault(x => x.GetName().Name?.Contains("Calabonga.Commandex.Engine") == true);
+
+        if (dll is not null)
+        {
+            return dll.GetName().Version?.ToString(3) ?? "0.0.0";
+        }
+
+        return "0.0.0";
     }
 }

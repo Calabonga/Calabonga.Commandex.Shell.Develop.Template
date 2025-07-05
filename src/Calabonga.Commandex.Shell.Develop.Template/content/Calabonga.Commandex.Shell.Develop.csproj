@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Calabonga.Commandex.Engine.Processors" Version="2.5.0" />
+    <PackageReference Include="Calabonga.Commandex.Engine.Processors" Version="2.6.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.6" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
