@@ -34,7 +34,7 @@ public class SampleCommand : EmptyCommandexCommand
 
     public override string CopyrightInfo => "Calabonga SOFT";
 
-    public override string DisplayName => "Empty Command Sample";
+    public override string DisplayName => "SampleCommand Dialog Command";
 
     public override string Description => "For demo purposes only. Replace this SampleCommand with your own.";
 
