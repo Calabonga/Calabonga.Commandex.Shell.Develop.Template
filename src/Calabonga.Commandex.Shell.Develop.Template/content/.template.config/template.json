@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Calabonga SOFT",
   "classifications": [
@@ -7,7 +7,7 @@
     "Desktop",
     "Templating"
   ],
-  "name": "WPF Shell Application for Commandex",
+  "name": "Commandex Shell WPF Application",
   "description": "Template for WPF Application with CommunityToolkit.Mvvm installed. This application is a simple Commandex Shell emulation that helps developers create a CommandexCommand components.",
   "identity": "Calabonga.Commandex.Shell.Develop",
   "shortName": "wpfshell",

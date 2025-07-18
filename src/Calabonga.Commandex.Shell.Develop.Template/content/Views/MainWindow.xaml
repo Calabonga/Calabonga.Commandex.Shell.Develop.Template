@@ -3,77 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:Calabonga.Commandex.Shell.Develop.Views"
         xmlns:controls="clr-namespace:Calabonga.Commandex.Engine.ToastNotifications.Controls;assembly=Calabonga.Commandex.Engine"
-        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:zones="clr-namespace:Calabonga.Commandex.Engine.Zones;assembly=Calabonga.Commandex.Engine"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        SizeToContent="Height"
-        Title="{Binding Path=Title}" MinHeight="320" Width="800" Icon="/logo.png">
-    <Window.Resources>
-        <Style x:Key="AccentStyle1" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{x:Static SystemParameters.WindowGlassBrush}"></Setter>
-        </Style>
-    </Window.Resources>
+        SizeToContent="Manual"
+        Title="{Binding Path=Title}"
+        MinHeight="768" Height="768"
+        Width="1024"
+        MinWidth="1024"
+        Icon="/logo.png">
 
-    <Grid>
-        <Grid Margin="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="NET 9.0" Foreground="Gray" FontSize="10" HorizontalAlignment="Right"/>
-            <TabControl Grid.Row="1">
-                <TabItem Header="Executor">
-                    <Border Margin="8,2" Padding="24,0"  >
-                        <StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="Commandex Shell" FontSize="22" Foreground="DarkOrange" TextAlignment="Center" Margin="0,0,8,0"/>
-                                <TextBlock Text="for Developer" FontSize="20" TextAlignment="Center" Foreground="DodgerBlue" Margin="0,0,8,0"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,14">
-                                <TextBlock Text="Commandex Engine" Foreground="Gray" FontSize="16" TextAlignment="Center" Margin="0,0,8,0"/>
-                                <TextBlock Text="{Binding Path=Version}" 
-                                           Style="{StaticResource AccentStyle1}" FontSize="16" TextAlignment="Center" />
-                            </StackPanel>
-                            <Expander Header="Instructions how to use" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <StackPanel Margin="22,0">
-                                    <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" 
-                                                Margin="0,0,0,10"/>
-                                    <TextBlock TextWrapping="Wrap" Text="0. Add project reference into Shell project and mark Shell-project as start up."/>
-                                    <TextBlock TextWrapping="Wrap" Text="1. Register your Command in DependencyContainer.cs."/>
-                                    <TextBlock TextWrapping="Wrap" Text="2. Inject your command(s) into MainWindowsViewModel as ICommandexCommand."/>
-                                    <TextBlock TextWrapping="Wrap" Text="3. Use your ICommandexCommand instance in ExecuteAsync() method to execute command."/>
-                                    <TextBlock TextWrapping="Wrap" Text="4. If you everything do correctly than after click on button below your Command will come executed."/>
-                                    <TextBlock TextWrapping="Wrap" Text="5. You can find application logs in logs\local-*.log by default. Please check this settings in App class."/>
-                                </StackPanel>
-                            </Expander>
+    <Grid Margin="10">
 
-                            <Border Margin="0,30,0,8" BorderBrush="Gray" BorderThickness="0.25" >
-                                <StackPanel   HorizontalAlignment="Stretch" >
-                                    <TextBlock Text="{Binding Path=Message}" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap"
-                                           Style="{StaticResource AccentStyle1}"/>
-                                    <TextBlock Text="{Binding Path=Metadata.Version}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding Path=Metadata.TypeName}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding Path=Metadata.Description}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                    <TextBlock Text="{Binding Path=Metadata.CopyrightInfo}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                </StackPanel>
-                            </Border>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,8,0,15">
-                                <Button Padding="9"
-                                        MinWidth="150"
-                                        Content="Execute" 
-                                        Command="{Binding Path=ExecuteCommand}"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </TabItem>
-                <TabItem Header="Settings">
-                    <views:SettingsView/>
-                </TabItem>
-            </TabControl>
-        </Grid>
+        <ContentControl zones:Zones.ZoneName="MainZone" />
+
         <controls:NotificationZone x:Name="NotificationZone" ItemsCountMax="3" Position="TopRight" />
     </Grid>
 </Window>
