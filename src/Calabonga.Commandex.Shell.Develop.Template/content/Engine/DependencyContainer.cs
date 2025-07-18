@@ -6,9 +6,11 @@ using Calabonga.Commandex.Engine.Processors.Base;
 using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Engine.ToastNotifications;
 using Calabonga.Commandex.Engine.ViewModelLocator;
+using Calabonga.Commandex.Engine.Zones;
 using Calabonga.Commandex.Shell.Develop.Sample;
 using Calabonga.Commandex.Shell.Develop.ViewModels;
 using Calabonga.Commandex.Shell.Develop.Views;
+using Calabonga.Commandex.Shell.Develop.Zones;
 using Calabonga.Wpf.AppDefinitions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -16,6 +18,9 @@ using Serilog;
 
 namespace Calabonga.Commandex.Shell.Develop.Engine;
 
+/// <summary>
+/// Dependency registration root
+/// </summary>
 /// <summary>
 /// Dependency registration root
 /// </summary>
@@ -36,9 +41,13 @@ internal static class DependencyContainer
         services.AddSingleton<MainWindow>();
         services.AddSingleton<MainWindowsViewModel>();
         services.AddSingleton<SettingsViewModel>();
+        services.AddSingleton<IZoneManager, ZoneManager>();
+        services.AddSingleton<IMvvmObjectFactory, MvvmObjectFactory>();
         services.AddSingleton<IDialogService, DialogService>();
         services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
         services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
+        services.AddScoped<IPreviewView, PreviewView>();
+        services.AddScoped<IPreviewViewModel, PreviewViewModel>();
 
         // toast notifications
         services.AddScoped<INotificationManager, NotificationManager>();
@@ -54,8 +63,7 @@ internal static class DependencyContainer
         // --------------------------------------------------
         // 1. Attach command definition from your project where Commandex.Command implemented.
         // 2. Then uncomment line below and add your command type.
-        // services.AddDefinitions(typeof(YourAppDefinition)); // <-- uncomment this line and register your command here
-        services.AddDefinitions(typeof(SampleCommandDefinition)); // <-- and comment this line
+        services.AddDefinitions(typeof(SampleCommandDefinition)); // <-- uncomment this line and register your command here
         // --------------------------------------------------
 
         var buildServiceProvider = services.BuildServiceProvider();
