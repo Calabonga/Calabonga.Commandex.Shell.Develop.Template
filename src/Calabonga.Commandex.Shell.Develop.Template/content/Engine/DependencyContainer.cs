@@ -7,17 +7,14 @@ using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Engine.ToastNotifications;
 using Calabonga.Commandex.Engine.ViewModelLocator;
 using Calabonga.Commandex.Engine.Zones;
-using Calabonga.Commandex.Shell.Develop.Sample;
 using Calabonga.Commandex.Shell.Develop.ViewModels;
 using Calabonga.Commandex.Shell.Develop.Views;
 using Calabonga.Commandex.Shell.Develop.Zones;
-using Calabonga.Wpf.AppDefinitions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace Calabonga.Commandex.Shell.Develop.Engine;
-
 /// <summary>
 /// Dependency registration root
 /// </summary>
@@ -60,11 +57,8 @@ internal static class DependencyContainer
         services.AddDialogComponent();
         services.AddWizardComponent();
 
-        // --------------------------------------------------
-        // 1. Attach command definition from your project where Commandex.Command implemented.
-        // 2. Then uncomment line below and add your command type.
-        services.AddDefinitions(typeof(SampleCommandDefinition)); // <-- uncomment this line and register your command here
-        // --------------------------------------------------
+        // register all commands
+        services.RegisterCommandsDefinitions();
 
         var buildServiceProvider = services.BuildServiceProvider();
         ViewModelLocationProvider.SetDefaultViewModelFactory(type => buildServiceProvider.GetRequiredService(type));

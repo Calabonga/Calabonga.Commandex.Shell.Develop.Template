@@ -48,10 +48,10 @@
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                             <StackPanel   HorizontalAlignment="Stretch" >
                                 <TextBlock Text="{Binding Path=Message}" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" Style="{StaticResource AccentStyle1}"/>
-                                <TextBlock Text="{Binding Path=Metadata.Version}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                <TextBlock Text="{Binding Path=Metadata.TypeName}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                <TextBlock Text="{Binding Path=Metadata.Description}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
-                                <TextBlock Text="{Binding Path=Metadata.CopyrightInfo}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=SelectedCommand.Version}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=SelectedCommand.TypeName}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=SelectedCommand.Description}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Path=SelectedCommand.CopyrightInfo}" FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" Foreground="Gray"/>
                                 <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </StackPanel>
                         </Border>
@@ -106,30 +106,37 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,14">
                                 <TextBlock Text="Commandex Engine" Foreground="Gray" FontSize="16" TextAlignment="Center" Margin="0,0,8,0"/>
                                 <TextBlock Text="{Binding Path=Version}" 
-                           Style="{StaticResource AccentStyle1}" FontSize="16" TextAlignment="Center" />
+                       Style="{StaticResource AccentStyle1}" FontSize="16" TextAlignment="Center" />
                             </StackPanel>
 
                             <StackPanel Margin="22,0">
                                 <TextBlock TextWrapping="Wrap" Text="This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:" 
-                                Margin="0,0,0,10"/>
+                            Margin="0,0,0,10"/>
                                 <TextBlock TextWrapping="Wrap" Text="Step 1: Add project reference into Shell project and mark Shell-project as start up."/>
                                 <TextBlock TextWrapping="Wrap" Text="Step 2: Register your Command in DependencyContainer.cs."/>
                                 <TextBlock TextWrapping="Wrap" Text="Step 3: Done! You can press Execute button bellow to run (test) your command." Margin="0,0,0,30"/>
                                 <TextBlock TextWrapping="Wrap" Text="By the way, you can find application logs in logs\local-*.log by default. Please check this settings in App class."  FontStyle="Italic"/>
                             </StackPanel>
 
-
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Margin="0,0,0,30">
+                            <StackPanel Margin="0,22" 
+                                    Visibility="{Binding Path=IsMoreThanOneCommandFound, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <TextBlock Text="Select a command to Execute:"/>
+                                <ComboBox ItemsSource="{Binding Path=Commands}"
+                                  DisplayMemberPath="DisplayName"
+                                  SelectedItem="{Binding Path=SelectedCommand, Mode=TwoWay}"/>
+                            </StackPanel>
+
                             <ProgressBar Height="22" 
-                                 IsIndeterminate="True"
-                                 Visibility="{Binding Path=IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                 Margin="0,0,0,30"/>
+                             IsIndeterminate="True"
+                             Visibility="{Binding Path=IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"
+                             Margin="0,0,0,30"/>
 
                             <Button Style="{DynamicResource ButtonStyle1}" 
-                        Padding="9" MinWidth="150" 
-                        engine:FocusExtension.IsFocused="True" Command="{Binding Path=ExecuteCommand}" IsDefault="True"/>
+                    Padding="9" MinWidth="150" 
+                    engine:FocusExtension.IsFocused="True" Command="{Binding Path=ExecuteCommand}" IsDefault="True"/>
                         </StackPanel>
                     </Grid>
                 </Border>

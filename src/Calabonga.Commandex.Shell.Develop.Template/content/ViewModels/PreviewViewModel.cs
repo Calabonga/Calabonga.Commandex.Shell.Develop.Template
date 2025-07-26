@@ -5,24 +5,37 @@ using Calabonga.Commandex.Shell.Develop.Zones;
 using Calabonga.Utils.Extensions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
 public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
 {
-    private readonly ICommandexCommand _command;
 
     private readonly IResultProcessor _resultProcessor;
     private readonly INotificationManager _notificationManager;
-    public PreviewViewModel(ICommandexCommand command, INotificationManager notificationManager, IResultProcessor resultProcessor)
+    public PreviewViewModel(IEnumerable<ICommandexCommand> commands, INotificationManager notificationManager, IResultProcessor resultProcessor)
     {
-        _command = command;
         _notificationManager = notificationManager;
         _resultProcessor = resultProcessor;
-        Message = _command.DisplayName;
-        Metadata = _command;
+        Commands = new ObservableCollection<ICommandexCommand>(commands);
         Version = GetEngineVersion();
+        if (Commands.Any())
+        {
+            SelectedCommand = Commands.First();
+            IsMoreThanOneCommandFound = Commands.Count > 1;
+        }
+
     }
+
+    #region property IsMoreThanOneCommandFound
+
+    /// <summary>
+    /// Property IsMoreThanOneCommandFound
+    /// </summary>
+    [ObservableProperty] private bool _isMoreThanOneCommandFound;
+
+    #endregion
 
     #region property Message
 
@@ -33,12 +46,22 @@ public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
 
     #endregion
 
-    #region property Metadata
+    #region property SelectedCommand
 
     /// <summary>
-    /// Property Metadata
+    /// Property SelectedCommand
     /// </summary>
-    [ObservableProperty] private ICommandexCommand _metadata;
+    [ObservableProperty]
+    private ICommandexCommand? _selectedCommand;
+
+    #endregion
+
+    #region property Commands
+
+    /// <summary>
+    /// Property Commands
+    /// </summary>
+    [ObservableProperty] private ObservableCollection<ICommandexCommand> _commands;
 
     #endregion
 
@@ -52,17 +75,18 @@ public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
     #endregion
 
     #region command ExecuteCommand
+    private bool CanExecuteCommand => SelectedCommand is not null;
 
     /// <summary>
     /// Executes MVVM button action and process result from command.
     /// Do not make any changes to this method if you are not sure.
     /// </summary>
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanExecuteCommand))]
     private async Task ExecuteAsync()
     {
         IsBusy = true;
 
-        var result = await _command.ExecuteCommandAsync();
+        var result = await SelectedCommand!.ExecuteCommandAsync();
         if (!result.Ok)
         {
             IsBusy = false;
@@ -73,11 +97,11 @@ public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
 
         IsBusy = false;
 
-        _resultProcessor.ProcessCommand(_command);
+        _resultProcessor.ProcessCommand(SelectedCommand);
 
-        if (_command.IsPushToShellEnabled)
+        if (SelectedCommand.IsPushToShellEnabled)
         {
-            var commandResult = _command.GetResult();
+            var commandResult = SelectedCommand.GetResult();
             if (commandResult is null)
             {
                 _notificationManager.Show(NotificationManager.CreateErrorToast("Not result from command"), "NotificationZone");
@@ -121,4 +145,10 @@ public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
     }
 
     #endregion
+
+    partial void OnSelectedCommandChanged(ICommandexCommand? value)
+    {
+        Message = value?.DisplayName ?? "Not selected";
+        ExecuteCommand.NotifyCanExecuteChanged();
+    }
 }
