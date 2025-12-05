@@ -88,7 +88,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="NET 9.0" Foreground="Gray" FontSize="10" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="0" Text="NET 10.0" Foreground="Gray" FontSize="10" HorizontalAlignment="Right"/>
         <TabControl Grid.Row="1">
             <TabItem Header="Executor">
                 <Border Margin="8,2" Padding="24,0"  >
