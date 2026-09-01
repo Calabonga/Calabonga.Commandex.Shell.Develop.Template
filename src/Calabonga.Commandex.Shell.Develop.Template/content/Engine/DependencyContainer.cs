@@ -1,8 +1,7 @@
 ﻿using Calabonga.Commandex.Engine.Base;
 using Calabonga.Commandex.Engine.Dialogs;
 using Calabonga.Commandex.Engine.Extensions;
-using Calabonga.Commandex.Engine.Processors;
-using Calabonga.Commandex.Engine.Processors.Base;
+using Calabonga.Commandex.Engine.Processors.Extensions;
 using Calabonga.Commandex.Engine.Settings;
 using Calabonga.Commandex.Engine.ToastNotifications;
 using Calabonga.Commandex.Engine.ViewModelLocator;
@@ -15,9 +14,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace Calabonga.Commandex.Shell.Develop.Engine;
-/// <summary>
-/// Dependency registration root
-/// </summary>
+
 /// <summary>
 /// Dependency registration root
 /// </summary>
@@ -49,9 +46,8 @@ internal static class DependencyContainer
         // toast notifications
         services.AddScoped<INotificationManager, NotificationManager>();
 
-        // result processor 
-        services.AddSingleton<IResultProcessor, AdvancedResultProcessor>();
-        services.AddSingleton<IProcessor, Processor>();
+        // result processor (same registration as the real Shell)
+        services.AddAdvancedResultProcessor();
 
         // dialogs and wizard
         services.AddDialogComponent();

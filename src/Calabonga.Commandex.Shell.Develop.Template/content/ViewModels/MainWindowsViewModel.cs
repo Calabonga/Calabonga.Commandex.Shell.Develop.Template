@@ -7,7 +7,7 @@ namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 /// <summary>
 /// ViewModel for MainWindow View.
 /// </summary>
-public partial class MainWindowsViewModel : ViewModelBase
+public sealed partial class MainWindowsViewModel : ViewModelBase
 {
     public MainWindowsViewModel(
         IZoneManager zoneManager,
