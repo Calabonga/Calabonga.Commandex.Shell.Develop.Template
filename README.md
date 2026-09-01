@@ -32,76 +32,33 @@ dotnet new install Calabonga.Commandex.Shell.Develop.Template
 
 ## How to use
 
-This application can only test your Command for Commandex, but almost in a real conditions. How? Please do a few simple steps:
+This application tests your Command for Commandex in almost real conditions. Commands are discovered automatically: the shell scans its own output folder for assemblies and registers every `AppDefinition` / `ICommandexCommand` it finds. A few simple steps:
 
-1. Please implement a `ICommandexCommand` interface in WPF Class Library project and add reference to `Calabonga.Commandex.Shell.Develop`.
-2. Register your `ICommandexCommand` implementation in the `DependencyContainer.cs`.
+1. Install the template and scaffold a developer shell:
 
-    ``` csharp
-    internal static IServiceProvider ConfigureServices()
-    {
-        var services = new ServiceCollection();
-
-        services.AddLogging(options =>
-        {
-            options.AddSerilog(dispose: true);
-            options.AddDebug();
-        });
-
-        services.AddSingleton<DefaultDialogView>();
-        services.AddSingleton<MainWindow>();
-        services.AddSingleton<ViewModels.MainWindowsViewModel>();
-        services.AddSingleton<IDialogService, DialogService>();
-        services.AddSingleton<IAppSettings>(_ => App.Current.Settings);
-        services.AddSingleton<ISettingsReaderConfiguration, DefaultSettingsReaderConfiguration>();
-
-        // dialogs and wizard
-        services.AddTransient<IWizardView, Wizard>();
-        services.AddTransient<IDialogService, DialogService>();
-        services.AddTransient(typeof(IWizardManager<>), typeof(WizardManager<>));
-
-        // --------------------------------------------------
-        // 1. Attach command definition from your project where Commandex.Command implemented.
-        // 2. Then uncomment line below and add your command type.
-        // services.AddDefinitions(typeof(WelcomeAppDefinition)); // <-- uncomment line and register your command here
-        // --------------------------------------------------
-
-        return services.BuildServiceProvider();
-    }
+    ``` powershell
+    dotnet new install Calabonga.Commandex.Shell.Develop.Template
+    dotnet new wpfshell -n Commandex.Developer.Shell
     ```
 
+2. Implement `ICommandexCommand` (and its `AppDefinition`) in a WPF Class Library project, then add a project reference to it from `Commandex.Developer.Shell`. Its DLL now lands next to the shell on build.
 
-3. Inject your command implementation into `MainWindowsViewModel` as `ICommandexCommand`.
-    ``` csharp
-    public partial class MainWindowsViewModel : ViewModelBase
-    {
-        private readonly IDialogService _dialogService;
+3. Set a real path in `commandex.env`:
 
-        public MainWindowsViewModel(IDialogService dialogService, IAppSettings settings)
-        {
-            Title = $"Commandex Shell Emulator for Easy developing ({settings.CommandsPath})";
-            Version = "1.0.0-rc.7";
-            _dialogService = dialogService;
-        }
-
-        [ObservableProperty]
-        private string _version;
-
-        /// <summary>
-        /// Executes MVVM button action
-        /// </summary>
-        [RelayCommand]
-        private Task ExecuteAsync()
-        {
-            _dialogService.ShowNotification("You do not attach your ICommandexCommand yet. " +
-                                            "Please add your component definition in the DependencyContainer.cs file.");
-            return Task.CompletedTask;
-        }
-    }
+    ``` ini
+    COMMANDS_FOLDER="C:\Path\To\Your\Commands"
     ```
 
-4. Use your injected instance in `ExecuteAsync()` method to execute command as shown above.
-5. If you everything do correctly, than after button click on the form your command will come executed.
+4. Build and run the developer shell. `RegisterCommandsDefinitions()` (in `Engine/ServiceCollectionExtension.cs`) scans the output folder and auto-registers all commands found, including the bundled `SampleCommand`. Pick one on the **Executor** tab and press **Execute**.
+
+5. The result is passed through `IResultProcessor` (`AdvancedResultProcessor` from `Calabonga.Commandex.Engine.Processors`), and a toast notification shows the outcome. Logs are written to `logs/local-*.log` (configured in `App`).
+
+**Fallback — manual registration.** If you do not want the folder scan, register the definition explicitly in `Engine/DependencyContainer.cs`:
+
+``` csharp
+// register all commands
+services.AddDefinitions(typeof(YourAppDefinition));
+```
 
 ## Screenshot
 

@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace Calabonga.Commandex.Shell.Develop.ViewModels;
 
-public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
+public sealed partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
 {
 
     private readonly IResultProcessor _resultProcessor;
@@ -42,7 +42,7 @@ public partial class PreviewViewModel : ZoneViewModelBase, IPreviewViewModel
     /// <summary>
     /// Property Message
     /// </summary>
-    [ObservableProperty] private string _message;
+    [ObservableProperty] private string? _message;
 
     #endregion
 
