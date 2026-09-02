@@ -4,6 +4,10 @@
              Startup="Application_Startup">
     <Application.Resources>
         <ResourceDictionary>
+
+            <SolidColorBrush x:Key="AppBackgroundBrush" Color="White" />
+            <SolidColorBrush x:Key="TextSecondaryBrush" Color="Black" />
+
             <Style x:Key="HugeHeader" TargetType="{x:Type TextBlock}">
                 <Setter Property="FontSize" Value="32"/>
                 <Setter Property="FontWeight" Value="Bold"/>
